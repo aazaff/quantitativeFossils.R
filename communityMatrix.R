@@ -40,14 +40,14 @@ cleanGenus<-function(DataPBDB) {
 
 # Assign fossil occurrences to different ages
 # Then remove occurrences that are not temporally constrained to a single interval
-sortAges<-function(DataPBDB,TimeScale) {
+sortAges<-function(DataPBDB,Timescale) {
 	DataPBDB[,"early_interval"]<-as.character(DataPBDB[,"early_interval"])
 	DataPBDB[,"late_interval"]<-as.character(DataPBDB[,"late_interval"])
-	for (i in 1:nrow(TimeScale)) {
-		EarlyPos<-which(DataPBDB[,"max_ma"]>TimeScale[i,"t_age"] & DataPBDB[,"max_ma"]<=TimeScale[i,"b_age"])
+	for (i in 1:nrow(Timescale)) {
+		EarlyPos<-which(DataPBDB[,"max_ma"]>Timescale[i,"t_age"] & DataPBDB[,"max_ma"]<=Timescale[i,"b_age"])
 		DataPBDB[EarlyPos,"early_interval"]<-as.character(TimeScale[i,"name"])
-		LatePos<-which(DataPBDB[,"min_ma"]>=TimeScale[i,"t_age"] & DataPBDB[,"min_ma"]<TimeScale[i,"b_age"])
-		DataPBDB[LatePos,"late_interval"]<-as.character(TimeScale[i,"name"])
+		LatePos<-which(DataPBDB[,"min_ma"]>=Timescale[i,"t_age"] & DataPBDB[,"min_ma"]<Timescale[i,"b_age"])
+		DataPBDB[LatePos,"late_interval"]<-as.character(Timescale[i,"name"])
 		}
 	DataPBDB<-DataPBDB[DataPBDB[,"early_interval"]==DataPBDB[,"late_interval"],] # Remove taxa that range through
 	return(DataPBDB)
@@ -55,12 +55,12 @@ sortAges<-function(DataPBDB,TimeScale) {
 
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample
-communityMatrix<-function(DataPBDB,SampleDef="geoplate") {
-	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDef])),ncol=length(unique(DataPBDB[,"genus"])))
-	rownames(FinalMatrix)<-unique(DataPBDB[,SampleDef])
+communityMatrix<-function(DataPBDB,SampleDefinition="geoplate") {
+	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDefinition])),ncol=length(unique(DataPBDB[,"genus"])))
+	rownames(FinalMatrix)<-unique(DataPBDB[,SampleDefinition])
 	colnames(FinalMatrix)<-unique(DataPBDB[,"genus"])
 	for (i in 1:nrow(FinalMatrix)) {
-		PlateSubset<-subset(DataPBDB,DataPBDB[,SampleDef]==rownames(FinalMatrix)[i])
+		PlateSubset<-subset(DataPBDB,DataPBDB[,SampleDefinition]==rownames(FinalMatrix)[i])
 		ColumnPosition<-match(PlateSubset[,"genus"],colnames(FinalMatrix))
 		FinalMatrix[i,ColumnPosition]<-1
 		}
