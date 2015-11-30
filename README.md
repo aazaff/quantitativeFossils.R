@@ -2,6 +2,8 @@
 Functions for downloading, cleaning, or culling PBDB data
 
 ## Contents
++ [communityMatrix.R](#communitymatrixr) # Downloading and cleaning PBDB data, and making a community matrix.
++ [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 
 ## communityMatrix.R
 A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for downloading data from the Paleobiology Database, and organizing it into a community matrix of samples by taxa, where "samples" are based on  one of the variables in the Paleobiology Database - i.e., Plate ID, Geologic Age.
