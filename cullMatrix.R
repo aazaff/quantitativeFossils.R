@@ -8,6 +8,7 @@ cullMatrix <- function(x, minOccurrences=2, minDiversity=2) {
 	y
 }
 
+# Dependency of cullMatrix()
 cullTaxa <- function(x, minOccurrences) {
 	PA <- x
  	PA[PA>0] <- 1
@@ -18,6 +19,7 @@ cullTaxa <- function(x, minOccurrences) {
  	y
 }
 
+# Dependency of cullMatrix()
 cullSamples <- function(x, minDiversity) {
 	PA <- x
  	PA[PA>0] <- 1
@@ -28,6 +30,7 @@ cullSamples <- function(x, minDiversity) {
  	y
 }
 
+# Dependency of cullMatrix()
 occurrencesFlag <- function(x, minOccurrences) {
   	PA <- x
  	PA[PA>0] <- 1
@@ -41,6 +44,7 @@ occurrencesFlag <- function(x, minOccurrences) {
  	flag
 }
 
+# Dependency of cullMatrix()
 diversityFlag <- function(x, minDiversity) {
  	PA <- x
  	PA[PA>0] <- 1
