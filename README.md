@@ -1,7 +1,9 @@
 # CleaningPBDB
 Functions for downloading, cleaning, or culling PBDB data
 
-## communityMatrix
+## Contents
+
+## communityMatrix.R
 A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for downloading data from the Paleobiology Database, and organizing it into a community matrix of samples by taxa, where "samples" are based on  one of the variables in the Paleobiology Database - i.e., Plate ID, Geologic Age.
 
 Can be accessed directly in R using:
@@ -57,7 +59,7 @@ CleanedPBDB<-cleanGenus(DataPBDB)
 CommunityMatrix<-communityMatrix(DataPBDB,SampleDefinition="geoplate")
 ````
 
-## cullMatrix
+## cullMatrix.R
 A set of functions written by [Steven M. Holland](http://strata.uga.edu/) for removing depauperate and rare taxa from community matrices of samples by taxa.
 
 Can be accessed directly in R using:
