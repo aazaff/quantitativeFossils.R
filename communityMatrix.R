@@ -56,11 +56,11 @@ sortAges<-function(DataPBDB,TimeScale) {
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample
 communityMatrix<-function(DataPBDB,SampleDef="geoplate") {
-	FinalMatrix<-matrix(0,nrow=length(unique(EpochSubset[,SampleDef])),ncol=length(unique(EpochSubset[,"genus"])))
-	rownames(FinalMatrix)<-unique(EpochSubset[,SampleDef])
-	colnames(FinalMatrix)<-unique(EpochSubset[,"genus"])
+	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDef])),ncol=length(unique(DataPBDB[,"genus"])))
+	rownames(FinalMatrix)<-unique(DataPBDB[,SampleDef])
+	colnames(FinalMatrix)<-unique(DataPBDB[,"genus"])
 	for (i in 1:nrow(FinalMatrix)) {
-		PlateSubset<-subset(EpochSubset,EpochSubset[,SampleDef]==rownames(FinalMatrix)[i])
+		PlateSubset<-subset(DataPBDB,DataPBDB[,SampleDef]==rownames(FinalMatrix)[i])
 		ColumnPosition<-match(PlateSubset[,"genus"],colnames(FinalMatrix))
 		FinalMatrix[i,ColumnPosition]<-1
 		}
