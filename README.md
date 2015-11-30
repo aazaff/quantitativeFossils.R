@@ -22,11 +22,11 @@ DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",
 
 #### downloadTime( )
 ````
-# Download timescale definitions from Macrostrat
+# Download Timescale definitions from Macrostrat
 # Parameter Timescale must be a timescale recognized by the macrostrat API, no default
-# A list of timescale defs can be seen here https://macrostrat.org/api/defs/timescales?all
+# A list of Timescale defs can be seen here https://macrostrat.org/api/defs/timescales?all
 
-Epochs<-downloadTime(TimeScale="international epochs")
+Epochs<-downloadTime(Timescale="international epochs")
 ````
 
 #### constrainAges( )
