@@ -14,7 +14,7 @@ Can be accessed directly in R using:
 source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/communityMatrix.R")
 ````
 
-#### downloadPBDB( )
+##### downloadPBDB( )
 ````
 # Download data from PBDB by taxonomic group and geologic interval
 # Parameter Taxa must be a vector of one or more taxon names (as a character string), no default.
@@ -24,7 +24,7 @@ source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/communityMa
 DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",StopInterval="Pleistocene")
 ````
 
-#### downloadTime( )
+##### downloadTime( )
 ````
 # Download Timescale definitions from Macrostrat
 # Parameter Timescale must be a timescale recognized by the macrostrat API, no default
@@ -33,7 +33,7 @@ DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",
 Epochs<-downloadTime(Timescale="international epochs")
 ````
 
-#### constrainAges( )
+##### constrainAges( )
 ````
 # Assign fossil occurrences to different ages
 # Then remove occurrences that are not temporally constrained to a single interval
@@ -43,7 +43,7 @@ Epochs<-downloadTime(Timescale="international epochs")
 ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 ````
 
-#### cleanGenus( )
+##### cleanGenus( )
 ````
 # Cleans the genus field of the PBDB data by removing subgenera and NA's
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
@@ -51,7 +51,7 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 CleanedPBDB<-cleanGenus(DataPBDB)
 ````
 
-#### communityMatrix( )
+##### communityMatrix( )
 ````
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample
@@ -69,7 +69,7 @@ Can be accessed directly in R using:
 ````
 source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/cullMatrix.R")
 ````
-#### cullMatrix( )
+##### cullMatrix( )
 ````
 # Cull a community matrix of depauperate samples and rare taxa.
 # Parameter x is a community matrix, no default.
