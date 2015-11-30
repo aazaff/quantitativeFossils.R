@@ -2,7 +2,7 @@
 Functions for download, cleaning, or culling PBDB data
 
 ## communityMatrix
-A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for downloading data from the Paleobiology Database, and organiziang it into a community matrix of samples by taxa, where "samples" are based on  one of the variables in the Paleobiology Database - i.e., Plate ID, Geologic Age.
+A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for downloading data from the Paleobiology Database, and organizing it into a community matrix of samples by taxa, where "samples" are based on  one of the variables in the Paleobiology Database - i.e., Plate ID, Geologic Age.
 
 Can be accessed directly in R using:
 
