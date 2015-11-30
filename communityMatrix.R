@@ -21,6 +21,7 @@ downloadPBDB<-function(Taxa,StartInterval="Pliocene",StopInterval="Pleistocene")
 
 # Download timescales from Macrostrat
 downloadTime<-function(Timescale) {
+	Timescale<-gsub(" ","%20",Timescale)
 	URL<-paste("https://dev.macrostrat.org/api/defs/intervals?format=csv&timescale=",Timescale,sep="")
 	GotURL<-getURL(URL)
 	Intervals<-read.csv(text=GotURL,header=T)
@@ -40,12 +41,12 @@ cleanGenus<-function(DataPBDB) {
 
 # Assign fossil occurrences to different ages
 # Then remove occurrences that are not temporally constrained to a single interval
-sortAges<-function(DataPBDB,Timescale) {
+constrainAges<-function(DataPBDB,Timescale) {
 	DataPBDB[,"early_interval"]<-as.character(DataPBDB[,"early_interval"])
 	DataPBDB[,"late_interval"]<-as.character(DataPBDB[,"late_interval"])
 	for (i in 1:nrow(Timescale)) {
 		EarlyPos<-which(DataPBDB[,"max_ma"]>Timescale[i,"t_age"] & DataPBDB[,"max_ma"]<=Timescale[i,"b_age"])
-		DataPBDB[EarlyPos,"early_interval"]<-as.character(TimeScale[i,"name"])
+		DataPBDB[EarlyPos,"early_interval"]<-as.character(Timescale[i,"name"])
 		LatePos<-which(DataPBDB[,"min_ma"]>=Timescale[i,"t_age"] & DataPBDB[,"min_ma"]<Timescale[i,"b_age"])
 		DataPBDB[LatePos,"late_interval"]<-as.character(Timescale[i,"name"])
 		}
