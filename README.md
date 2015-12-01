@@ -2,7 +2,7 @@
 Functions for downloading, cleaning, or culling PBDB data
 
 ## Contents
-+ [Creative Commons License](#creativecommonslicense)
++ [Creative Commons License](#creative-commons-license)
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 
