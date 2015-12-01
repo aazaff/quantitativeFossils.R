@@ -84,10 +84,10 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 # A duplicate of cullMatrix( ) that does not throw an error when there are no samples
 # or taxa left. It instead returns a single vector of NA. Useful when culling multiple
 # matrices in a loop, and would rather skip depauperate matrices, rather than break
-# the entire loop. Not recommended otherwise.
+# the entire loop. Not recommended otherwise. Modified by A.Z.
 # Parameter x is a community matrix, no default.
 # Parameter minOccurrences is the minimum number of occurrences for each taxon, default = 2
 # Parameter minDiversity is the minimum number of taxa within each sample, default=2
 
-CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
+CulledMatrix<-softMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
