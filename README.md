@@ -2,11 +2,11 @@
 Functions for downloading, cleaning, or culling PBDB data
 
 ## Contents
-+ [License](#license)
++ [Creative Commons License](#creativecommonslicense)
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 
-## License
+## Creative Commons License
 All code within the [CleaningPBDB](https://github.com/aazaff/CleaningPBDB) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
 
 ## communityMatrix.R
