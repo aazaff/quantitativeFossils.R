@@ -1,4 +1,4 @@
-# CleaningPBDB
+# paleobiologyDatabase.R
 R Functions for downloading, cleaning, or culling data from the [Paleobiology Database](paleobiodb.org). Developed by the Paleobiology Database and [Macrostrat Database](macrostrat.org) development teams at the University of Wisconsin - Madison.
 
 ## Contents
