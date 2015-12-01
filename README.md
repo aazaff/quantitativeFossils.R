@@ -7,7 +7,7 @@ R Functions for downloading, cleaning, or culling data from the [Paleobiology Da
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 
 ## Creative Commons License
-All code within the [CleaningPBDB](https://github.com/aazaff/CleaningPBDB) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
+All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
 
 ## communityMatrix.R
 A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for downloading data from the Paleobiology Database, and organizing it into a community matrix of samples by taxa, where "samples" are based on  one of the variables in the Paleobiology Database - e.g., Plate ID, Geologic Age.
