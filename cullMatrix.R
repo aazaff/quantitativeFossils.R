@@ -63,11 +63,11 @@ softCull <- function(x, minOccurrences=2, minDiversity=2) {
 	y <- x
 	while (diversityFlag(y, minDiversity) | occurrencesFlag(y, minOccurrences)) {
 		y <- softTaxa(y, minOccurrences)
-		if (is.na(y)==TRUE) {
+		if (length(y)==1) {
 			return(NA)
 			}
 		y <- softSamples(y, minDiversity)
-		if (is.na(y)==TRUE) {
+		if (length(y)==1) {
 			return(NA)
 			}
 		}
