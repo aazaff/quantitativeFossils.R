@@ -103,7 +103,7 @@ An optimized version of John Alroy's Shareholder Quorum Subsampling function wri
 Can be accessed directly in R using:
 
 ````
-source(https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/standardizeQuota.R)
+source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/standardizeQuota.R")
 ````
 
 ##### standardizeQuota( )
