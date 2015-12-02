@@ -6,7 +6,7 @@
 #############################################################################################################
 
 # Steve Holland's optimized SQS function
-standardizeEvenness<-function(Abundance,Quota=0.9,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE) {
+standardizeQuota<-function(Abundance,Quota=0.9,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE) {
 	Abundance<-Abundance[Abundance>0]
 	if ((Quota <= 0 || Quota >= 1)) {
 		stop('The SQS Quota must be greater than 0.0 and less than 1.0')
