@@ -5,6 +5,7 @@ R Functions for downloading, cleaning, or culling data from the [Paleobiology Da
 + [Creative Commons License](#creative-commons-license)
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
++ [standardizeQuota.R](#standardizequotar) # John Alroy's Shareholder Quorum Subsampling function
 
 ## Creative Commons License
 All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
@@ -94,4 +95,25 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 # Parameter minDiversity is the minimum number of taxa within each sample, default=2
 
 CulledMatrix<-softMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
+````
+
+## standardizeQuota.R
+An optimized version of John Alroy's Shareholder Quorum Subsampling function written by [Steven M. Holland](http://strata.uga.edu/).
+
+Can be accessed directly in R using:
+
+````
+source(https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/standardizeQuota.R)
+````
+
+##### standardizeQuota( )
+````
+# A sampling standardization scheme that subsamples based on evenness metrics rather than a fixed amount
+# Parameter Abundance is a vector of abundances.
+# Parameter Quota is a value between 0 and 1, the default is set to 0.9.
+# Parameter IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
+# Parameter ExcludeDominant determines whether or not to ignore the most dominant taxon
+# Excluding the abundant taxon is recommended by Alroy, but the default is set to FALSE.
+
+StandardizedRichness<-standardizeQuota(Abundance,Quota=0.5,IgnoreSingletons=FALSE,ExcludeDominant=FALSE)
 ````
