@@ -2,7 +2,7 @@
 R Functions for downloading, cleaning, culling, or analyzing data from the [Paleobiology Database](paleobiodb.org). Developed by the Paleobiology Database and [Macrostrat Database](macrostrat.org) development teams at the University of Wisconsin - Madison.
 
 ## Contents
-+ [Creative Commons License](#creative-commons-license)
++ [Creative Commons License](#creative-commons-license) # The creative commons license for modules in this repository.
 + [Version and Change Log](#version-and-change-log) # Information about changes to this repository.
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
