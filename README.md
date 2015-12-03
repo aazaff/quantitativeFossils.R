@@ -21,7 +21,8 @@ source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/communityMa
 
 ##### downloadPBDB( )
 ````
-# Download data from PBDB by taxonomic group and geologic interval
+# Download data from PBDB by taxonomic group and geologic interval.
+
 # Parameter Taxa must be a vector of one or more taxon names (as a character string), no default.
 # Parameter StartInterval must be a single interval name accepted by the PBDB, default is "Pliocene"
 # Parameter StopInterval must be a single interval name accepted by the PBDB, default is "Pleistocene" 
@@ -31,7 +32,8 @@ DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",
 
 ##### downloadTime( )
 ````
-# Download Timescale definitions from Macrostrat
+# Download Timescale definitions from Macrostrat.
+
 # Parameter Timescale must be a timescale recognized by the macrostrat API, no default
 # A list of Timescale defs can be seen here https://macrostrat.org/api/defs/timescales?all
 
@@ -40,8 +42,9 @@ Epochs<-downloadTime(Timescale="international epochs")
 
 ##### constrainAges( )
 ````
-# Assign fossil occurrences to different ages
-# Then remove occurrences that are not temporally constrained to a single interval
+# Assign fossil occurrences to different ages, then remove occurrences that are not temporally 
+# constrained to a single interval.
+
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter Timescale is a dataset downloaded from Macrostrat - i.e., using downloadTime( )
 
@@ -50,7 +53,8 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 
 ##### cleanGenus( )
 ````
-# Cleans the genus field of the PBDB data by removing subgenera and NA's
+# Cleans the genus field of the PBDB data by removing subgenera and NA's.
+
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 
 CleanedPBDB<-cleanGenus(DataPBDB)
@@ -59,7 +63,8 @@ CleanedPBDB<-cleanGenus(DataPBDB)
 ##### communityMatrix( )
 ````
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
-# (e.g., geoplate, early_interval) as the definition of a sample
+# (e.g., geoplate, early_interval) as the definition of a sample.
+
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter SampleDefinition is the column name defining samples
 
@@ -67,7 +72,7 @@ CommunityMatrix<-communityMatrix(DataPBDB,SampleDefinition="geoplate")
 ````
 
 ## cullMatrix.R
-A set of functions written by [Steven M. Holland](http://strata.uga.edu/) for removing depauperate and rare taxa from community matrices of samples by taxa.
+A set of functions for removing depauperate and rare taxa from community matrices of samples by taxa.
 
 Can be accessed directly in R using:
 
@@ -76,7 +81,8 @@ source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/cullMatrix.
 ````
 ##### cullMatrix( )
 ````
-# Cull a community matrix of depauperate samples and rare taxa.
+# Cull a community matrix of depauperate samples and rare taxa. Written by S.M. Holland.
+
 # Parameter x is a community matrix, no default.
 # Parameter minOccurrences is the minimum number of occurrences for each taxon, default = 2
 # Parameter minDiversity is the minimum number of taxa within each sample, default=2
@@ -90,6 +96,7 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 # rather than throwing an error. Useful when culling multiple matrices in a loop, 
 # and you would rather skip depauperate matrices than break the loop. 
 # Not recommended otherwise. Modified by A.Z.
+
 # Parameter x is a community matrix, no default.
 # Parameter minOccurrences is the minimum number of occurrences for each taxon, default = 2
 # Parameter minDiversity is the minimum number of taxa within each sample, default=2
@@ -108,8 +115,8 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/s
 
 ##### subsampleEvenness( )
 ````
-# An optimized version of John Alroy's Shareholder Quorum Subsampling function written by Steven M. Holland.
-# Sharehold Quorum Subsampling subsamples based on evenness, rather than by a fixed number of individuals.
+# A function that subsamples richness based on evenness. Written by Steven M. Holland.
+
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is a value between 0 and 1, the default is set to 0.9.
 # Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
@@ -125,6 +132,7 @@ SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 # A multicore version of subsampleEvenness(). Be warned that multicoreEvenness() is not automatically
 # faster than subsampleEvenness(), particularly for a low number of trials. It's use is not recommended
 # for small abundance vectors or a small numbers of trials.
+
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is a value between 0 and 1, the default is set to 0.9.
 # Parameter Trials determines how many iterations of the bootstrap are performed, default = 1000
@@ -138,8 +146,8 @@ SubsampledRichness<-multicoreEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 
 ##### subsampleIndividuals( )
 ````
-# A function for standardizing richness by subsampling a fixed number of individuals. This is also known
-# as rarefaction.
+# A function that subsamples richness based on a fixed number of individuals.
+
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
 # the number of individuals, the function will print a warning and return the unstandardized richness.
@@ -150,9 +158,10 @@ SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 
 ##### multicoreIndividuals( )
 ````
-# A multicore version of subsampleIndividuals(). Be warned that multicoreEvenness() is not automatically
+# A multicore version of subsampleIndividuals(). Be warned that multicoreIndividuals() is not automatically
 # faster than subsampleIndividuals(), particularly for a low number of trials. It's use is not recommended
 # for small abundance vectors or a small numbers of trials.
+
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
 # the number of individuals, the function will print a warning and return the unstandardized richness.
