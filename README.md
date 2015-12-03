@@ -108,7 +108,7 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 # Parameter minOccurrences is the minimum number of occurrences for each taxon, default = 2
 # Parameter minDiversity is the minimum number of taxa within each sample, default=2
 
-CulledMatrix<-softMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
+CulledMatrix<-softCull(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
 
 ## subsampleRichness.R
