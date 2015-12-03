@@ -23,7 +23,7 @@ A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for do
 Can be accessed directly in R using:
 
 ````
-source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/communityMatrix.R")
+source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/cullMatrix.R")
 ````
 
 ##### downloadPBDB( )
@@ -84,7 +84,7 @@ A set of functions for removing depauperate and rare taxa from community matrice
 Can be accessed directly in R using:
 
 ````
-source("https://raw.githubusercontent.com/aazaff/CleaningPBDB/master/cullMatrix.R")
+source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/cullMatrix.R")
 ````
 ##### cullMatrix( )
 ````
