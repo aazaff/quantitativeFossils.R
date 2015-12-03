@@ -146,7 +146,7 @@ SubsampledRichness<-multicoreEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 
 ##### subsampleIndividuals( )
 ````
-# A function that subsamples richness based on a fixed number of individuals.
+# A function that subsamples richness based on a fixed number of individuals. Often referred to as "rarefaction".
 
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
