@@ -5,7 +5,7 @@ R Functions for downloading, cleaning, or culling data from the [Paleobiology Da
 + [Creative Commons License](#creative-commons-license)
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
-+ [standardizeQuota.R](#standardizequotar) # John Alroy's Shareholder Quorum Subsampling function
++ [subsampleRichness.R](#subsamplerichnessr) # A set of functions for standardizing diversity.
 
 ## Creative Commons License
 All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
@@ -97,23 +97,67 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 CulledMatrix<-softMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
 
-## standardizeQuota.R
-An optimized version of John Alroy's Shareholder Quorum Subsampling function written by [Steven M. Holland](http://strata.uga.edu/).
+## subsampleRichness.R
+Functions for standardizing tasonomic richness.
 
 Can be accessed directly in R using:
 
 ````
-source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/standardizeQuota.R")
+source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/subsampleRichness.R")
 ````
 
-##### standardizeQuota( )
+##### subsampleEvenness( )
 ````
-# A sampling standardization scheme that subsamples based on evenness metrics rather than a fixed amount
+# An optimized version of John Alroy's Shareholder Quorum Subsampling function written by Steven M. Holland.
+# Sharehold Quorum Subsampling subsamples based on evenness, rather than by a fixed number of individuals.
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is a value between 0 and 1, the default is set to 0.9.
+# Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
 # Parameter IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
 # Parameter ExcludeDominant determines whether or not to ignore the most dominant taxon
 # Excluding the abundant taxon is recommended by Alroy, but the default is set to FALSE.
 
-StandardizedRichness<-standardizeQuota(Abundance,Quota=0.5,IgnoreSingletons=FALSE,ExcludeDominant=FALSE)
+SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE)
+````
+
+##### multicoreEvenness( )
+````
+# A multicore version of subsampleEvenness(). Be warned that multicoreEvenness() is not automatically
+# faster than subsampleEvenness(), particularly for a low number of trials. It's use is not recommended
+# for small abundance vectors or a small numbers of trials.
+# Parameter Abundance is a vector of abundances.
+# Parameter Quota is a value between 0 and 1, the default is set to 0.9.
+# Parameter Trials determines how many iterations of the bootstrap are performed, default = 1000
+# Parameter IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
+# Parameter ExcludeDominant determines whether or not to ignore the most dominant taxon
+# Excluding the abundant taxon is recommended by Alroy, but the default is set to FALSE.
+# Parameter Cores sets the number of processor cores, default = 4.
+
+SubsampledRichness<-multicoreEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE,Cores=4)
+````
+
+##### subsampleIndividuals( )
+````
+# A function for standardizing richness by subsampling a fixed number of individuals. This is also known
+# as rarefaction.
+# Parameter Abundance is a vector of abundances.
+# Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
+# the number of individuals, the function will print a warning and return the unstandardized richness.
+# Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
+
+SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
+````
+
+##### multicoreIndividuals( )
+````
+# A multicore version of subsampleIndividuals(). Be warned that multicoreEvenness() is not automatically
+# faster than subsampleIndividuals(), particularly for a low number of trials. It's use is not recommended
+# for small abundance vectors or a small numbers of trials.
+# Parameter Abundance is a vector of abundances.
+# Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
+# the number of individuals, the function will print a warning and return the unstandardized richness.
+# Parameter Trials determines how many iterations of the bootstrap are performed, default = 1000
+# Parameter Cores sets the number of processor cores, default = 4.
+
+SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 ````
