@@ -14,7 +14,7 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr).
 
-+ v.0.02 - Added [subsampleRichness.R](#subsamplerichnessr) module. Changed repository name from CleaningPBDB to paleobiologyDatabase.R
++ v.0.02 - Added [subsampleRichness.R](#subsamplerichnessr) module. Changed repository name from CleaningPBDB to paleobiologyDatabase.R. Added new function, softCull(), function to cullMatrix.R module.
 + v.0.01 - Added [communityMatrix.R](#communitymatrixr) and [cullMatrix.R](#cullmatrixr) modules.
 
 ## communityMatrix.R
