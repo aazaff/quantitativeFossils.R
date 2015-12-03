@@ -3,7 +3,7 @@ R Functions for downloading, cleaning, culling, or analyzing data from the [Pale
 
 ## Contents
 + [Creative Commons License](#creative-commons-license)
-+ [Version and Change Log](#versionandchangelog) # Information about changes to this repository.
++ [Version and Change Log](#version-and-change-log) # Information about changes to this repository.
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
