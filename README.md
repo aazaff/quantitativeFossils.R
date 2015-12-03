@@ -3,12 +3,16 @@ R Functions for downloading, cleaning, culling, or analyzing data from the [Pale
 
 ## Contents
 + [Creative Commons License](#creative-commons-license)
++ [Version and Change Log](#versionandchangelog) # Information about changes to this repository.
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
 
 ## Creative Commons License
 All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
+
+## Version and Change Log
+This is v0.021 of the paleobiologyDatabase.R repository. The repository has three functional modules. [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr).
 
 ## communityMatrix.R
 A set of functions written by [Andrew A. Zaffos](https://macrostrat.org/) for downloading data from the Paleobiology Database, and organizing it into a community matrix of samples by taxa, where "samples" are based on  one of the variables in the Paleobiology Database - e.g., Plate ID, Geologic Age.
