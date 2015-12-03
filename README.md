@@ -1,5 +1,5 @@
 # paleobiologyDatabase.R
-R Functions for downloading, cleaning, culling, or analyzing data from the [Paleobiology Database](paleobiodb.org). Developed and maintained by [Andrew Zaffos](macrostrat.org) as part of the Paleobiology Database and [Macrostrat Database](macrostrat.org) tech development initiatives at the University of Wisconsin - Madison.
+R Functions for downloading, cleaning, culling, or analyzing fossil data from the Paleobiology Database. Developed and maintained by [Andrew Zaffos](macrostrat.org) as part of the [Paleobiology Database](paleobiodb.org) and [Macrostrat Database](macrostrat.org) tech development initiatives at the University of Wisconsin - Madison.
 
 ## Contents
 + [Creative Commons License](#creative-commons-license) # The creative commons license for modules in this repository.
