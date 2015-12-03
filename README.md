@@ -115,7 +115,8 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/s
 
 ##### subsampleEvenness( )
 ````
-# A function that subsamples richness based on evenness. Written by Steven M. Holland.
+# A function that subsamples richness based on evenness. Often referred to as "Shareholder Quorum Subsampling".
+# An optimized version of code written John Alroy, by Steven M. Holland.
 
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is a value between 0 and 1, the default is set to 0.9.
