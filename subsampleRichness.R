@@ -11,13 +11,6 @@ if (require("doMC")==FALSE) {
 		library("doMC")
 		}
 
-if (require("foreach")==FALSE) {
-	install.packages("foreach")
-	library("foreach")
-	} else {
-		library("foreach")
-		}
-
 # Steve Holland's optimized SQS function
 subsampleEvenness<-function(Abundance,Quota=0.9,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE) {
 	Abundance<-Abundance[Abundance>0]
