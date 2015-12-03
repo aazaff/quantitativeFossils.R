@@ -189,13 +189,13 @@ subsampleIndividuals<-function(Abundance,Quota,Trials=100) {
 		}
 	for (i in 1:Trials) {
 		Subsample<-sample(Pool,Quota,replace=TRUE)
-		Richness[i]<-length(unique(Richness))
+		Richness[i]<-length(unique(Subsample))
 		}
 	return(mean(Richness))
 	}
 
 # A multicore version of subsampleIndividuals()
-multicoreIndivduals<-function(Abundance,Quota,Trials=1000,Cores=4) {
+multicoreIndividuals<-function(Abundance,Quota,Trials=1000,Cores=4) {
 	Abundance<-Abundance[Abundance>0]
 	Pool<-rep(1:length(Abundance),times=Abundance)
 	if (length(unique(Pool)) < Quota) {
@@ -205,7 +205,7 @@ multicoreIndivduals<-function(Abundance,Quota,Trials=1000,Cores=4) {
 	registerDoMC(cores=Cores)
 	Richness<-times(Trials) %dopar% {
 		Subsample<-sample(Pool,Quota,replace=TRUE)
-		length(unique(Richness))
+		length(unique(Subsample))
 		}
 	return(mean(Richness))
 	}
