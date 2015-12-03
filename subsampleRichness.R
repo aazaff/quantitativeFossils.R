@@ -195,7 +195,7 @@ subsampleIndividuals<-function(Abundance,Quota,Trials=100) {
 	}
 
 # A multicore version of subsampleIndividuals()
-multicoreIndivduals<-function(Abundance,Quota,Trials=1000) {
+multicoreIndivduals<-function(Abundance,Quota,Trials=1000,Cores=4) {
 	Abundance<-Abundance[Abundance>0]
 	Pool<-rep(1:length(Abundance),times=Abundance)
 	if (length(unique(Pool)) < Quota) {
