@@ -137,8 +137,8 @@ SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 
 ##### multicoreEvenness( )
 ````
-# A multicore version of subsampleEvenness(). Be warned that multicoreEvenness() is not automatically
-# faster than subsampleEvenness(), particularly for a low number of trials. It's use is not recommended
+# A multicore version of subsampleEvenness( ). Be warned that multicoreEvenness( ) is not automatically
+# faster than subsampleEvenness( ), particularly for a low number of trials. It's use is not recommended
 # for small abundance vectors or a small numbers of trials.
 
 # Parameter Abundance is a vector of abundances.
@@ -166,8 +166,8 @@ SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 
 ##### multicoreIndividuals( )
 ````
-# A multicore version of subsampleIndividuals(). Be warned that multicoreIndividuals() is not automatically
-# faster than subsampleIndividuals(), particularly for a low number of trials. It's use is not recommended
+# A multicore version of subsampleIndividuals( ). Be warned that multicoreIndividuals( ) is not automatically
+# faster than subsampleIndividuals( ), particularly for a low number of trials. It's use is not recommended
 # for small abundance vectors or a small numbers of trials.
 
 # Parameter Abundance is a vector of abundances.
@@ -177,4 +177,18 @@ SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 # Parameter Cores sets the number of processor cores, default = 4.
 
 SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
+````
+
+##### resampleIndividuals( )
+````
+# A specialized variant of subsampleIndividuals( ). If the quota is greater than the number of individuals,
+# it will switch to sampling with replacement. This allows for diversity in those samples to be lower
+# than quota. 
+# Caution: This is non-standard approach, and is not recommended for general use.
+
+# Parameter Abundance is a vector of abundances.
+# Parameter Quota is the number of individuals to be subsampled. 
+# Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
+
+resampleIndividuals<-multicoreIndividuals(Abundance,Quota,Trials=100)
 ````
