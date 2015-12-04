@@ -182,10 +182,10 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 
 ##### resampleIndividuals( )
 ````
-# A specialized variant of subsampleIndividuals( ). If the quota is greater than the number of individuals,
+# A specialized variant of subsampleIndividuals( ). If the quota is greater than the number of individuals
 # it will switch to sampling with replacement. This allows for diversity in those samples to be lower
-# than quota. 
-# Caution: This is non-standard approach, and is not recommended for general use.
+# than the quota. 
+# Caution: This is a non-standard approach, and is not recommended for general use.
 
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is the number of individuals to be subsampled. 
