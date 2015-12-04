@@ -9,7 +9,7 @@ R Functions for downloading, cleaning, culling, or analyzing fossil data from th
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
 
 ## Creative Commons License
-All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commerical use.
+All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commercial use.
 
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr).
