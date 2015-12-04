@@ -113,7 +113,7 @@ CulledMatrix<-softCull(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
 
 ## subsampleRichness.R
-Functions for standardizing taxonomic richness.
+Functions for standardizing taxonomic richness. The multicore versions use the [doMC](https://cran.r-project.org/web/packages/doMC/vignettes/gettingstartedMC.pdf) package and its dependencies.
 
 Can be accessed directly in R using:
 
@@ -139,8 +139,8 @@ SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 ##### multicoreEvenness( )
 ````
 # A multicore version of subsampleEvenness( ). Be warned that multicoreEvenness( ) is not automatically
-# faster than subsampleEvenness( ), particularly for a low number of trials. It's use is not recommended
-# for small abundance vectors or a small numbers of trials.
+# faster than subsampleEvenness( ), particularly for a low number of trials. Its use is not recommended
+# for small abundance vectors or a small numbers of trials. Requires the doMC package.
 
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is a value between 0 and 1, the default is set to 0.9.
@@ -168,8 +168,8 @@ SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 ##### multicoreIndividuals( )
 ````
 # A multicore version of subsampleIndividuals( ). Be warned that multicoreIndividuals( ) is not automatically
-# faster than subsampleIndividuals( ), particularly for a low number of trials. It's use is not recommended
-# for small abundance vectors or a small numbers of trials.
+# faster than subsampleIndividuals( ), particularly for a low number of trials. Its use is not recommended
+# for small abundance vectors or a small numbers of trials. Requires the doMC package.
 
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
