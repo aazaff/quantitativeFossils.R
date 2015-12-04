@@ -112,7 +112,7 @@ CulledMatrix<-softCull(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
 
 ## subsampleRichness.R
-Functions for standardizing tasonomic richness.
+Functions for standardizing taxonomic richness.
 
 Can be accessed directly in R using:
 
