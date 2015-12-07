@@ -1,5 +1,5 @@
 # Least inverse squares M Estimator
-estimateMean<-function(MeansVector,ErrorsVector) {
+mestimateMean<-function(MeansVector,ErrorsVector) {
 	SquaredErrors<-ErrorsVector^2
 	Numerator<-MeansVector/SquaredErrors
 	InverseErrors<-sum(1/SquaredErrors)
