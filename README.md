@@ -56,7 +56,7 @@ Epochs<-downloadTime(Timescale="international epochs")
 # Assign fossil occurrences to different ages, then remove occurrences that are not temporally 
 # constrained to a single interval.
 
-# Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter Timescale is a dataset downloaded from Macrostrat - i.e., using downloadTime( )
 
 ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
@@ -68,7 +68,7 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 # working with genus level data in the PBDB, as the "genus" column often erroneously includes
 # subgenus information.
 
-# Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 
 CleanedPBDB<-cleanGenus(DataPBDB)
 ````
