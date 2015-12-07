@@ -4,7 +4,7 @@ R Functions for downloading, cleaning, culling, or analyzing fossil data from th
 ## Contents
 + [Creative Commons License](#creative-commons-license) # The creative commons license for modules in this repository.
 + [Version and Change Log](#version-and-change-log) # Information about changes to this repository.
-+ [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
++ [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleeobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
 + [basicStatistics.R](#basicstatisticsr) # A set of functions for calculating basic statistics.
@@ -15,7 +15,7 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr). It also has one incomplete module [basicStatistics.R](#basicstatisticsr).
 
-+ v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one function, [estimateMean( )](#estimatemean-), which calculates the least inverse squares M-estimated mean and error. More functions coming soon.
++ v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one function, [mestimateMean( )](#mestimatemean-), which calculates the least inverse squares M-estimated mean and error. More functions coming soon.
 + v.0.021 - Added [resampleIndividuals( )](#resampleindividuals-) to [subsampleRichness.R](#subsamplerichnessr) module.
 + v.0.020 - Added [subsampleRichness.R](#subsamplerichnessr) module. Changed repository name from CleaningPBDB to paleobiologyDatabase.R. Added new function, [softCull( )](#softcull-), to cullMatrix.R module.
 + v.0.010 - Added [communityMatrix.R](#communitymatrixr) and [cullMatrix.R](#cullmatrixr) modules.
@@ -207,7 +207,7 @@ Can be accessed directly in R using:
 source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/basicStatistics.R")
 ````
 
-##### estimateMean( )
+##### mestimateMean( )
 ````
 # Calculates the least inverse squares M-estimator for a distribution when given a vector of means 
 # and a vector of associated errors. It returns the error-weighted mean and error-weighted error.
@@ -215,5 +215,5 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/b
 # Parameter MeansVector is a vector of means or sample values.
 # Parameter ErrorsVector is a vector of errors for each element of MeansVector
 
-EstimatedMean<-estimateMean(MeansVector=c(60,64,72),ErrorsVector=c(2,4,2))
+MestimateMean<-mestimateMean(MeansVector=c(60,64,72),ErrorsVector=c(2,4,2))
 ````
