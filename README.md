@@ -63,7 +63,9 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 
 ##### cleanGenus( )
 ````
-# Cleans the genus field of the PBDB data by removing subgenera and NA's.
+# Cleans the genus field of the PBDB data by removing subgenera and NA's. This is an important step when
+# working with genus level data in the PBDB, as the "genus" column often erroneously includes
+# subgenus information.
 
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 
