@@ -15,6 +15,7 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr). It also has one incomplete module [basicStatistics.R](#basicstatisticsr).
 
++ v.0.023 - Removed the communityMatrix( ), and replaced it with the identical [presenceMatrix( )](#presencematrix-) function, to make it more explicit that it is creating a presence-absence dataset. Added the [abundanceMatrix( )](#abundancematrix-) function, which makes a matrix with abundances.
 + v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one function, [mestimateMean( )](#mestimatemean-), which calculates the least inverse squares M-estimated mean and error. More functions coming soon.
 + v.0.021 - Added [resampleIndividuals( )](#resampleindividuals-) to [subsampleRichness.R](#subsamplerichnessr) module.
 + v.0.020 - Added [subsampleRichness.R](#subsamplerichnessr) module. Changed repository name from CleaningPBDB to paleobiologyDatabase.R. Added new function, [softCull( )](#softcull-), to cullMatrix.R module.
@@ -72,15 +73,32 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 CleanedPBDB<-cleanGenus(DataPBDB)
 ````
 
-##### communityMatrix( )
+##### presenceMatrix( )
 ````
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
-# (e.g., geoplate, early_interval) as the definition of a sample.
+# (e.g., geoplate, early_interval) as the definition of a sample. This creates a presence-absence
+# matrix of 1's (presence) and 0's (absence).
+
+# This is just a renamed version of the now deprecated function communityMatrix( ).
 
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter SampleDefinition is the column name defining samples
 
-CommunityMatrix<-communityMatrix(DataPBDB,SampleDefinition="geoplate")
+CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate")
+````
+
+##### abundanceMatrix( )
+````
+# Create a community matrix of samples v. species, using elements within one of the PBDB columns
+# (e.g., geoplate, early_interval) as the definition of a sample. This creates an "abundance"
+# matrix, which uses the number of occurrences a genus has within the "sample" as its abundance.
+# Because the theoretical and operational meaning of occurrences in the Paleobiology Database is ill-defined
+# I recommend using presenceMatrix( ) instead if possible.
+
+# Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Parameter SampleDefinition is the column name defining samples
+
+CommunityMatrix<-abundanceMatrix(DataPBDB,SampleDefinition="geoplate")
 ````
 
 ## cullMatrix.R
