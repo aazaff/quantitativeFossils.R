@@ -217,7 +217,7 @@ resampleIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
 ````
 
 ## basicStatistics.R
-Functions for calculating basic statistics. The long-term goal for this module is to present a series of functions for comparing two distributions beyond the traditional functions such as wilcox.test( ) or t.test( ).
+Functions for calculating basic statistics. The long-term goal for this module is to present a series of functions for comparing two distributions beyond  traditional functions like wilcox.test( ) or t.test( ).
 
 Can be accessed directly in R using:
 
