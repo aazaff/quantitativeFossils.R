@@ -15,7 +15,7 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr).
 
-+ v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one function, [estimateMean( )](#estimatemean-), which caluclates the least inverse squares M-estimator. More functions for basic statistics coming soon - i.e., Cohen's D
++ v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one function, [estimateMean( )](#estimatemean-), which calculates the least inverse squares M-estimator. More functions coming soon.
 + v.0.021 - Added [resampleIndividuals( )](#resampleindividuals-) to [subsampleRichness.R](#subsamplerichnessr) module.
 + v.0.020 - Added [subsampleRichness.R](#subsamplerichnessr) module. Changed repository name from CleaningPBDB to paleobiologyDatabase.R. Added new function, [softCull( )](#softcull-), to cullMatrix.R module.
 + v.0.010 - Added [communityMatrix.R](#communitymatrixr) and [cullMatrix.R](#cullmatrixr) modules.
