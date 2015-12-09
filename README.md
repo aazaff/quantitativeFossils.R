@@ -7,14 +7,14 @@ R Functions for downloading, cleaning, culling, or analyzing fossil data from th
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
-+ [basicStatistics.R](#basicstatisticsr) # A set of functions for calculating basic statistics.
 
 ## Creative Commons License
 All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commercial use.
 
 ## Version and Change Log
-This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr). It also has one incomplete module [basicStatistics.R](#basicstatisticsr).
+This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr). Two incomplete modules are also currently uploaded: basicStatistics.R and gaussianOccupancy.R. These modules are still under development and their use is discouraged.
 
++ v.0.024 - Removed support for [basicStatistics.R](#basicstatisticsr) module until additional functions come online.
 + v.0.023 - Removed  communityMatrix( ) and replaced it with the identical [presenceMatrix( )](#presencematrix-) function to make it more explicit that it is creating a presence-absence dataset. Added the [abundanceMatrix( )](#abundancematrix-) function, which makes a matrix with abundances.
 + v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one supported function, [mestimateMean( )](#mestimatemean-), which calculates the least inverse squares M-estimated mean and error. More functions coming soon.
 + v.0.021 - Added [resampleIndividuals( )](#resampleindividuals-) to [subsampleRichness.R](#subsamplerichnessr) module.
@@ -214,24 +214,4 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 # Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
 
 resampleIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
-````
-
-## basicStatistics.R
-Functions for calculating basic statistics. The long-term goal for this module is to present a series of functions for comparing two distributions beyond  traditional functions like wilcox.test( ) or t.test( ).
-
-Can be accessed directly in R using:
-
-````
-source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/basicStatistics.R")
-````
-
-##### mestimateMean( )
-````
-# Calculates the least inverse squares M-estimator for a distribution when given a vector of means 
-# and a vector of associated errors. It returns the error-weighted mean and error-weighted error.
-
-# Parameter MeansVector is a vector of means or sample values.
-# Parameter ErrorsVector is a vector of errors for each element of MeansVector
-
-MestimateMean<-mestimateMean(MeansVector=c(60,64,72),ErrorsVector=c(2,4,2))
 ````
