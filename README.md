@@ -14,6 +14,7 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr). Two incomplete modules are also currently uploaded: basicStatistics.R and gaussianOccupancy.R. These modules are still under development and their use is discouraged.
 
++ v.0.025 - Upgraded [downloadPBDB( )](#downloadpbdb-) to use https instead of http.
 + v.0.024 - Removed support for [basicStatistics.R](#basicstatisticsr) module until additional functions come online.
 + v.0.023 - Removed  communityMatrix( ) and replaced it with the identical [presenceMatrix( )](#presencematrix-) function to make it more explicit that it is creating a presence-absence dataset. Added the [abundanceMatrix( )](#abundancematrix-) function, which makes a matrix with abundances.
 + v.0.022 - Added [basicStatistics.R](#basicstatisticsr) module. Currently only has one supported function, [mestimateMean( )](#mestimatemean-), which calculates the least inverse squares M-estimated mean and error. More functions coming soon.
