@@ -10,12 +10,11 @@ if (require("RCurl")==FALSE) {
 		library("RCurl")
 		}
 
-# Download data from PBDB by taxonomic group and geologic interval
-# Object Taxa must be a vector of taxa
 downloadPBDB<-function(Taxa,StartInterval="Pliocene",StopInterval="Pleistocene") {
 	Taxa<-paste(Taxa,collapse=",")
-	URL<-paste("http://paleobiodb.org/data1.2/occs/list.csv?base_name=",Taxa,"&interval=",StartInterval,",",StopInterval,"&show=paleoloc,loc,strat,phylo&limit=all",sep="")
-	File<-read.csv(URL,header=T)
+	URL<-paste("https://paleobiodb.org/data1.2/occs/list.csv?base_name=",Taxa,"&interval=",StartInterval,",",StopInterval,"&show=paleoloc,phylo&limit=all",sep="")
+	GotURL<-getURL(URL)
+	File<-read.csv(text=GotURL,header=T)
 	return(File)
 	}
 
