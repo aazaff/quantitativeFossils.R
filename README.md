@@ -15,6 +15,8 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has four functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), [subsampleRichness.R](#subsamplerichnessr), and [partitionDiversity.R](#partitiondiversityr). Two incomplete modules are also currently uploaded: basicStatistics.R and gaussianOccupancy.R. These modules are still under development and their use is discouraged.
 
+The next module will add support for several other diversity indices (e.g., True Shannon's Entropy) to some of these modules.
+
 + v.0.030 - Added [partitionDiversity.R](#partitiondiversityr) module.
 + v.0.025 - Upgraded [downloadPBDB( )](#downloadpbdb-) to use https instead of http.
 + v.0.024 - Removed support for [basicStatistics.R](#basicstatisticsr) module until additional functions come online.
