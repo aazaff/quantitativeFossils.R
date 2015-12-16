@@ -210,7 +210,8 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 # A specialized variant of subsampleIndividuals( ). If the quota is greater than the number of individuals
 # it will switch to sampling with replacement. This allows for diversity in those samples to be lower
 # than the quota. 
-# Caution: This is a non-standard approach, and is not recommended for general use.
+
+# Caution: This is a non-standard approach.
 
 # Parameter Abundance is a vector of abundances.
 # Parameter Quota is the number of individuals to be subsampled. 
@@ -235,7 +236,7 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/p
 
 ##### taxonAlphaContributions( )
 ````
-# Returns vector of each taxon’s contribution to alpha diversity
+# Returns vector of each taxon’s contribution to alpha diversity. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
@@ -244,7 +245,7 @@ TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
 
 ##### taxonBetaContributions( )
 ````
-# Returns vector of each taxon’s contribution to beta diversity. Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta, with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta diversity of a higher level in the hierarchy.
+# Returns vector of each taxon’s contribution to beta diversity. Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta, with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta diversity of a higher level in the hierarchy. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
@@ -253,7 +254,7 @@ TaxonBeta<-taxonBetaContributions(x=PresenceMatrix)
 
 ##### sampleBetaContributions( )
 ````
-# Returns vector of each sample’s contribution to beta diversity. 
+# Returns vector of each sample’s contribution to beta diversity. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
@@ -262,7 +263,7 @@ TaxonBeta<-sampleBetaContributions(x=PresenceMatrix)
 
 ##### meanAlpha( )
 ````
-# Returns mean alpha diversity (richness) of samples.
+# Returns mean alpha diversity (richness) of samples. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
@@ -271,7 +272,7 @@ AlphaDiversity<-meanAlpha(x=PresenceMatrix)
 
 ##### beta( )
 ````
-# Returns beta diversity (richness) of samples.
+# Returns beta diversity (richness) of samples. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
@@ -280,7 +281,7 @@ BetaDiversity<-beta(x=PresenceMatrix)
 
 ##### gamma( )
 ````
-# Returns gamma (total) diversity (richness) of matrix.
+# Returns gamma (total) diversity (richness) of matrix. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
