@@ -221,9 +221,11 @@ resampleIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
 
 ## partitionDiversity.R
 Functions for calculating alpha, beta, and gamma richness of a community matrix. See [communityMatrix.R](#communitymatrixr) for functions to make such a matrix with Paleobiology Database data and [cullMatrix.R](#cullmatrixr) for functions to cull and prepare
-such a dataset. These functions were first presented in Holland, SM (2010) Additive diversity partitioning in palaeobiology: revisiting Sepkoski’s question. *Paleontology* 53:1237-1254.
+such a dataset. 
 
-Alternative functions for calculating alpha and beta via the traditional additive diversity partitioning method (alpha+beta=gamma) will be forthcoming in upcoming patch v.0.031. Additional "beta diversity" metrics will be included in subsequent patches.
+Some of these functions were presented in Holland, SM (2010) Additive diversity partitioning in palaeobiology: revisiting Sepkoski’s question. *Paleontology* 53:1237-1254. Namely, [taxonAlphaContributions( )](#taxonalphacontributions-), [taxonBetaContributions( )](#taxonbetacontributions-), and [sampleBetaContributions( )](#sampleBetaContributions-).
+
+Other methods of beta calculation come from the equations presented in Tuomisto, H. (2010) A diversity of beta diversities: straightening up a concept gone awry. Part 1. Defining beta diversity as a function of alpha and gamma diversity. *Ecography* 33:2-22.
 
 Can be accessed directly in R using:
 
@@ -242,11 +244,20 @@ TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
 
 ##### taxonBetaContributions( )
 ````
-# Returns vector of each sample’s contribution to beta diversity. Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta, with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta diversity of a higher level in the hierarchy.
+# Returns vector of each taxon’s contribution to beta diversity. Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta, with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta diversity of a higher level in the hierarchy.
 
 # Parameter x is a community matrix of presence-absence data.
 
 TaxonBeta<-taxonBetaContributions(x=PresenceMatrix)
+````
+
+##### sampleBetaContributions( )
+````
+# Returns vector of each sample’s contribution to beta diversity. 
+
+# Parameter x is a community matrix of presence-absence data.
+
+TaxonBeta<-sampleBetaContributions(x=PresenceMatrix)
 ````
 
 ##### meanAlpha( )
@@ -274,4 +285,53 @@ BetaDiversity<-beta(x=PresenceMatrix)
 # Parameter x is a community matrix of presence-absence data.
 
 GammaDiversity<-gamma(x=PresenceMatrix)
+````
+
+##### traditionalAlpha( )
+````
+# Calculate alpha diversity in the traditional manner, averaging sample richness.
+# Should always be equal to meanAlpha( ) function.
+
+# Parameter x is a community matrix of presence-absence data.
+
+AlphaDiversity<-traditionalAlpha(x=PresenceMatrix)
+````
+
+##### traditionalBeta( )
+````
+# Calculate beta diversity in the traditional manner ADP manner Beta = Gamma - Alpha
+# Should always be equal to beta( ) function.
+
+# Parameter x is a community matrix of presence-absence data.
+
+BetaDiversity<-traditionalBeta(x=PresenceMatrix)
+````
+
+##### multiplicativeBeta( )
+````
+# Calculate beta diversity in the traditional multiplicative manner. Beta = Gamma/Alpha
+
+# Parameter x is a community matrix of presence-absence data.
+
+BetaDiversity<-multiplicativeBeta(x=PresenceMatrix)
+````
+
+##### completeTurnovers( )
+````
+# Calculate Whittaker's effective species turnover, the number of complete effective species turnovers among samples in the dataset. 
+# Beta = (Gamma-Alpha)/Alpha
+
+# Parameter x is a community matrix of presence-absence data.
+
+BetaDiversity<-completeTurnovers(x=PresenceMatrix)
+````
+
+##### proportionNonendemic( )
+````
+# Proportional effective species turnover, the proporition of species in the region not limited to a single sample - i.e., the 
+# proportion of "non-endemic" taxa.
+
+# Parameter x is a community matrix of presence-absence data.
+
+BetaDiversity<-proportionNonendemic(x=PresenceMatrix)
 ````
