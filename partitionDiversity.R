@@ -14,7 +14,7 @@ taxonAlphaContributions <- function(x) {
 	N <- nrow(x)
 	alphaj <- nj/N
 	names(alphaj) <- colnames(x)
-	alphaj
+	return(alphaj)
 	}
 
 # returns vector of each taxon’s contribution to beta diversity
@@ -24,7 +24,7 @@ taxonBetaContributions <- function(x) {
 	nminusj <- N - nj
 	betaj <- nminusj / N
 	names(betaj) <- colnames(x)
-	betaj
+	return(betaj)
 	}
 
 # returns vector of each sample’s contribution to beta diversity
@@ -37,20 +37,60 @@ sampleBetaContributions <- function(x) {
 		betai[i] <- sum(betaj / nj * x[i, ])
 		}
 	names(betai) <- rownames(x)
-	betai
+	return(betai)
 	}
 
 # returns mean alpha diversity of samples
 meanAlpha <- function (x) {
-	sum(taxonAlphaContributions(x))
+	return(sum(taxonAlphaContributions(x)))
 	}
 
 # returns beta diversity among samples
 beta <- function (x) {
-	sum(taxonBetaContributions(x))
+	return(sum(taxonBetaContributions(x)))
 	}
 
 # returns gamma diversity of all samples combined
 gamma <- function(x) {
-	ncol(x)
+	return(ncol(x))
+	}
+
+# Calculate alpha diversity in the traditional manner, average sample richness
+traditionalAlpha<-function(x) {
+	return(mean(apply(x,1,sum)))
+	}
+
+# Calculate beta diversity in the traditional manner, gamma - alpha
+traditionalBeta<-function(x) {
+	Alpha<-traditionalAlpha(x)
+	Gamma<-gamma(x)
+	Beta<-Gamma-Alpha
+	return(Beta)
+	}
+
+# "True local diversity ratio" of Tuomisto 2010
+# This quantifies how many times as rich in effective species gamma is than alpha
+multiplicativeBeta<-function(x) {
+	Alpha<-traditionalAlpha(x)
+	Gamma<-gamma(x)
+	Beta<-Gamma/Alpha
+	return(Beta)
+	}
+
+# Whittaker's effective species turnover, the number of complete effective species
+# turnovers among compositional units in the dataset
+completeTurnovers<-function(x) {
+	Alpha<-traditionalAlpha(x)
+	Gamma<-gamma(x)
+	Beta<-(Gamma-Alpha)/Alpha
+	return(Beta)
+	}
+
+# Proportional effective species turnover, the proporition of species in the region
+# not limited to a single sample - i.e., the proportion of non-endemic taxa.
+proportionNonendemic<-function(x) {
+	Alpha<-traditionalAlpha(x)
+	Gamma<-gamma(x)
+	Beta<-(Gamma-Alpha)/Gamma
+	return(Beta)
 	}
