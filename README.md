@@ -235,7 +235,7 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/p
 
 ##### taxonAlphaContributions( )
 ````
-# returns vector of each taxon’s contribution to alpha diversity
+# Returns vector of each taxon’s contribution to alpha diversity
 
 # Parameter x is a community matrix of presence-absence data.
 
