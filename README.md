@@ -7,6 +7,7 @@ R Functions for downloading, cleaning, culling, or analyzing fossil data from th
 + [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
++ [partitionDiversity.R](#partitiondiversityr) # A set of functions for calculating alpha, beta, and gamma diversity of a community matrix.
 
 ## Creative Commons License
 All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to Andrew A. Zaffos and Steven M. Holland, and does not allow for commercial use.
@@ -14,6 +15,7 @@ All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiol
 ## Version and Change Log
 This is v0.02 of the paleobiologyDatabase.R repository. The repository has three functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), and [subsampleRichness.R](#subsamplerichnessr). Two incomplete modules are also currently uploaded: basicStatistics.R and gaussianOccupancy.R. These modules are still under development and their use is discouraged.
 
++ v.0.030 - Added [partitionDiversity.R](#partitiondiversityr) module.
 + v.0.025 - Upgraded [downloadPBDB( )](#downloadpbdb-) to use https instead of http.
 + v.0.024 - Removed support for [basicStatistics.R](#basicstatisticsr) module until additional functions come online.
 + v.0.023 - Removed  communityMatrix( ) and replaced it with the identical [presenceMatrix( )](#presencematrix-) function to make it more explicit that it is creating a presence-absence dataset. Added the [abundanceMatrix( )](#abundancematrix-) function, which makes a matrix with abundances.
@@ -215,4 +217,61 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 # Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
 
 resampleIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
+````
+
+## partitionDiversity.R
+Functions for calculating alpha, beta, and gamma richness of a community matrix. See [communityMatrix.R](#communitymatrixr) for functions to make such a matrix with Paleobiology Database data and [cullMatrix.R](#cullmatrixr) for functions to cull and prepare
+such a dataset. These functions were first presented in Holland, SM (2010) Additive diversity partitioning in palaeobiology: revisiting Sepkoski’s question. *Paleontology* 53:1237-1254.
+
+Alternative functions for calculating alpha and beta via the traditional additive diversity partitioning method (alpha+beta=gamma) will be forthcoming in upcoming patch v.0.031. Additional "beta diversity" metrics will be included in subsequent patches.
+
+Can be accessed directly in R using:
+
+````
+source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/partitionDiversity.R")
+````
+
+##### taxonAlphaContributions( )
+````
+# returns vector of each taxon’s contribution to alpha diversity
+
+# Parameter x is a community matrix of presence-absence data.
+
+TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
+````
+
+##### taxonBetaContributions( )
+````
+# Returns vector of each sample’s contribution to beta diversity. Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta, with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta diversity of a higher level in the hierarchy.
+
+# Parameter x is a community matrix of presence-absence data.
+
+TaxonBeta<-taxonBetaContributions(x=PresenceMatrix)
+````
+
+##### meanAlpha( )
+````
+# Returns mean alpha diversity (richness) of samples.
+
+# Parameter x is a community matrix of presence-absence data.
+
+AlphaDiversity<-meanAlpha(x=PresenceMatrix)
+````
+
+##### beta( )
+````
+# Returns beta diversity (richness) of samples.
+
+# Parameter x is a community matrix of presence-absence data.
+
+BetaDiversity<-beta(x=PresenceMatrix)
+````
+
+##### gamma( )
+````
+# Returns gamma (total) diversity (richness) of matrix.
+
+# Parameter x is a community matrix of presence-absence data.
+
+GammaDiversity<-gamma(x=PresenceMatrix)
 ````
