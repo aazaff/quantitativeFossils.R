@@ -225,7 +225,7 @@ such a dataset.
 
 Some of these functions were presented in Holland, SM (2010) Additive diversity partitioning in palaeobiology: revisiting Sepkoski’s question. *Paleontology* 53:1237-1254. Namely, [taxonAlphaContributions( )](#taxonalphacontributions-), [taxonBetaContributions( )](#taxonbetacontributions-), and [sampleBetaContributions( )](#sampleBetaContributions-).
 
-Other methods of beta calculation come from the equations presented in Tuomisto, H. (2010) A diversity of beta diversities: straightening up a concept gone awry. Part 1. Defining beta diversity as a function of alpha and gamma diversity. *Ecography* 33:2-22.
+Other methods of beta calculation come from the equations presented in Tuomisto, H (2010) A diversity of beta diversities: straightening up a concept gone awry. Part 1. Defining beta diversity as a function of alpha and gamma diversity. *Ecography* 33:2-22.
 
 Can be accessed directly in R using:
 
