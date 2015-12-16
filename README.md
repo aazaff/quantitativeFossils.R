@@ -329,7 +329,7 @@ BetaDiversity<-completeTurnovers(x=PresenceMatrix)
 ##### proportionNonendemic( )
 ````
 # Proportional effective species turnover, the proporition of species in the region not limited to a single sample - i.e., the 
-# proportion of "non-endemic" taxa.
+# proportion of "non-endemic" taxa. Beta = (Gamma-Alpha)/Gamma
 
 # Parameter x is a community matrix of presence-absence data.
 
