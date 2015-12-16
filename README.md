@@ -247,7 +247,9 @@ TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
 
 ##### taxonBetaContributions( )
 ````
-# Returns vector of each taxon’s contribution to beta diversity. Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta, with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta diversity of a higher level in the hierarchy. Written by S.M. Holland.
+# Returns vector of each taxon’s contribution to beta diversity. 
+# Be warned that if you are using a hierarchichal partitioning scheme # that this function *always* calculate between-sample beta,
+# with sample being defined by your matrix. You must pre-aggregate samples # in the community matrix before you can calculate the beta # diversity of a higher level in the hierarchy. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
 
