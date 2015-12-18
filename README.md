@@ -86,7 +86,7 @@ CleanedPBDB<-cleanGenus(DataPBDB)
 
 # This is just a renamed version of the now deprecated function communityMatrix( ).
 
-# Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter SampleDefinition is the column name defining samples
 
 CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate")
