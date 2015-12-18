@@ -4,7 +4,7 @@ R Functions for downloading, cleaning, culling, or analyzing fossil data from th
 ## Contents
 + [Creative Commons License](#creative-commons-license) # The creative commons license for modules in this repository.
 + [Version and Change Log](#version-and-change-log) # Information about changes to this repository.
-+ [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](#https://paleobiodb.org) (PBDB) data, and making a community matrix.
++ [communityMatrix.R](#communitymatrixr) # Downloading and cleaning [Paleobiology Database](https://paleobiodb.org) (PBDB) data, and making a community matrix.
 + [cullMatrix.R](#cullmatrixr) # Culling a communty matrix of depauperate samples and rare taxa.
 + [subsampleRichness.R](#subsamplerichnessr) # A set of subsampling functions for standardizing sampled taxonomic richness.
 + [partitionDiversity.R](#partitiondiversityr) # A set of functions for calculating alpha, beta, and gamma diversity of a community matrix.
