@@ -13,7 +13,7 @@ R Functions for downloading, cleaning, culling, or analyzing fossil data from th
 All code within the [paleobiologyDatabase.R](https://github.com/aazaff/paleobiologyDatabase.R) repository is covered under a Creative Commons License [(CC BY-NC 4.0)](http://creativecommons.org/licenses/by-nc/4.0/). This license requires attribution to [Andrew A. Zaffos](https://macrostrat.org/#contact) and [Steven M. Holland](https://strata.uga.edu), and does not allow for commercial use.
 
 ## Version and Change Log
-This is v0.02 of the paleobiologyDatabase.R repository. The repository has four functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), [subsampleRichness.R](#subsamplerichnessr), and [partitionDiversity.R](#partitiondiversityr). Two incomplete modules are also currently uploaded: basicStatistics.R and gaussianOccupancy.R. These modules are still under development and their use is discouraged.
+This is v0.03 of the paleobiologyDatabase.R repository. The repository has four functional modules: [communityMatrix.R](#communitymatrixr), [cullMatrix.R](#cullmatrixr), [subsampleRichness.R](#subsamplerichnessr), and [partitionDiversity.R](#partitiondiversityr). Two incomplete modules are also currently uploaded: basicStatistics.R and gaussianOccupancy.R. These modules are still under development and their use is discouraged.
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
