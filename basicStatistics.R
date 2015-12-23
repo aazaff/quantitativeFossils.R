@@ -1,3 +1,5 @@
+# This module is still under development, and is not recommended for general use.
+
 # Least inverse squares M Estimator
 mestimateMean<-function(MeansVector,ErrorsVector) {
 	SquaredErrors<-ErrorsVector^2
