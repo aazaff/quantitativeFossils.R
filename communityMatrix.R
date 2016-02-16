@@ -5,9 +5,9 @@
 # Load Required Libraries
 if (require("RCurl")==FALSE) {
 	install.packages("RCurl")
-	library("RCurl")
+	library(RCurl)
 	} else {
-		library("RCurl")
+		library(RCurl)
 		}
 
 downloadPBDB<-function(Taxa,StartInterval="Pliocene",StopInterval="Pleistocene") {
