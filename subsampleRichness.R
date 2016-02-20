@@ -176,8 +176,8 @@ subsampleIndividuals<-function(Abundance,Quota,Trials=100) {
 	Richness<-vector("numeric",length=Trials)
 	Abundance<-Abundance[Abundance>0]
 	Pool<-rep(1:length(Abundance),times=Abundance)
-	if (length(unique(Pool)) < Quota) {
-		print("Fewer Taxa than Quota")
+	if (sum(Abundance) < Quota) {
+		print("Fewer Individuals than Quota")
 		return(length(unique(Pool)))
 		}
 	for (i in 1:Trials) {
@@ -191,8 +191,8 @@ subsampleIndividuals<-function(Abundance,Quota,Trials=100) {
 multicoreIndividuals<-function(Abundance,Quota,Trials=1000,Cores=4) {
 	Abundance<-Abundance[Abundance>0]
 	Pool<-rep(1:length(Abundance),times=Abundance)
-	if (length(unique(Pool)) < Quota) {
-		print("Fewer Taxa than Quota")
+	if (sum(Abundance) < Quota) {
+		print("Fewer Individuals than Quota")
 		return(length(unique(Pool)))
 		}
 	registerDoMC(cores=Cores)
@@ -212,7 +212,7 @@ resampleIndividuals<-function(Abundance,Quota,Trials=100) {
 	Richness<-vector("numeric",length=Trials)
 	Abundance<-Abundance[Abundance>0]
 	Pool<-rep(1:length(Abundance),times=Abundance)
-	if (length(unique(Pool)) < Quota) {
+	if (sum(Abundance) < Quota) {
 		for (i in 1:Trials) {
 			Subsample<-sample(Pool,Quota,replace=TRUE)
 			Richness[i]<-length(unique(Subsample))
