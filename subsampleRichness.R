@@ -4,12 +4,13 @@
 ########################################## Function for Calculating SQS #####################################
 #############################################################################################################
 # Load Required Libraries
-if (require("doMC")==FALSE) {
-	install.packages("doMC")
-	library("doMC")
-	} else {
-		library("doMC")
-		}
+# doMC is currently broken
+# if (require("doMC")==FALSE) {
+#	install.packages("doMC")
+#	library("doMC")
+#	} else {
+#		library("doMC")
+#		}
 
 # Steve Holland's optimized SQS function
 subsampleEvenness<-function(Abundance,Quota=0.9,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE) {
