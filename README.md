@@ -233,7 +233,7 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 # Parameter Quota is the number of individuals to be subsampled. 
 # Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
 
-resampleIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
+ResampledIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
 ````
 
 ## partitionDiversity.R
