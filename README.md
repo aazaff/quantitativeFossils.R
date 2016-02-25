@@ -17,6 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
++ v.0.032 - Added [ageRanges( )](#ageranges-) function, which finds the age range of each taxon.
 + v.0.031 - Fixed a bug with the error messages for [resampleIndividuals( )](#resampleindividuals-) and [subsampleIndividuals( )](#subsampleindividuals-)
 + v.0.030 - Added [partitionDiversity.R](#partitiondiversityr) module.
 + v.0.025 - Upgraded [downloadPBDB( )](#downloadpbdb-) to use https instead of http.
@@ -32,12 +33,12 @@ A set of functions for downloading data from the Paleobiology Database, and orga
 
 Can be accessed directly in R using:
 
-````
+````R
 source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/communityMatrix.R")
 ````
 
 ##### downloadPBDB( )
-````
+````R
 # Download data from PBDB by taxonomic group and geologic interval.
 
 # Parameter Taxa must be a vector of one or more taxon names (as a character string), no default.
@@ -48,7 +49,7 @@ DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",
 ````
 
 ##### downloadTime( )
-````
+````R
 # Download Timescale definitions from Macrostrat.
 
 # Parameter Timescale must be a timescale recognized by the macrostrat API, no default
@@ -58,7 +59,7 @@ Epochs<-downloadTime(Timescale="international epochs")
 ````
 
 ##### constrainAges( )
-````
+````R
 # Assign fossil occurrences to different ages, then remove occurrences that are not temporally 
 # constrained to a single interval.
 
@@ -68,8 +69,19 @@ Epochs<-downloadTime(Timescale="international epochs")
 ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 ````
 
-##### cleanGenus( )
+##### ageRanges( )
+````R
+# Find the age range (min and max age) based on occurrence data in the PBDB for
+# A particular level of the taxonomic hierarchy (e.g., genus, family, order)
+
+# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Parameter Taxonomy is a level of the taxonomic hierarchy - e.g., "genus"
+
+ConstrainedAges<-ageRanges(DataPBDB=DataPBDB,Taxonomy="genus")
 ````
+
+##### cleanGenus( )
+````R
 # Cleans the genus field of the PBDB data by removing subgenera and NA's. This is an important step when
 # working with genus level data in the PBDB, as the "genus" column often erroneously includes
 # subgenus information.
@@ -80,7 +92,7 @@ CleanedPBDB<-cleanGenus(DataPBDB)
 ````
 
 ##### presenceMatrix( )
-````
+````R
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample. This creates a presence-absence
 # matrix of 1's (presence) and 0's (absence).
@@ -94,7 +106,7 @@ CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate")
 ````
 
 ##### abundanceMatrix( )
-````
+````R
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample. This creates an "abundance"
 # matrix, which uses the number of occurrences a genus has within the "sample" as its abundance.
@@ -112,11 +124,12 @@ A set of functions for removing depauperate and rare taxa from community matrice
 
 Can be accessed directly in R using:
 
-````
+````R
 source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/cullMatrix.R")
 ````
+
 ##### cullMatrix( )
-````
+````R
 # Cull a community matrix of depauperate samples and rare taxa. Written by S.M. Holland.
 
 # Parameter x is a community matrix, no default.
@@ -127,7 +140,7 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
 
 ##### softCull( )
-````
+````R
 # A variant of cullMatrix( ) that returns NA when there are no samples or taxa left
 # rather than throwing an error. Useful when culling multiple matrices in a loop, 
 # and you would rather skip depauperate matrices than break the loop. 
@@ -145,12 +158,12 @@ Functions for standardizing taxonomic richness. The multicore versions use the [
 
 Can be accessed directly in R using:
 
-````
+````R
 source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/subsampleRichness.R")
 ````
 
 ##### subsampleEvenness( )
-````
+````R
 # A function that subsamples richness based on evenness. Often referred to as "Shareholder Quorum Subsampling".
 # An optimized version of John Alroy's original function by Steven M. Holland.
 
@@ -165,7 +178,7 @@ SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 ````
 
 ##### multicoreEvenness( )
-````
+````R
 # A multicore version of subsampleEvenness( ). Be warned that multicoreEvenness( ) is not automatically
 # faster than subsampleEvenness( ), particularly for a low number of trials. Its use is not recommended
 # for small abundance vectors or a small numbers of trials. Requires the doMC package.
@@ -182,7 +195,7 @@ SubsampledRichness<-multicoreEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 ````
 
 ##### subsampleIndividuals( )
-````
+````R
 # A function that subsamples richness based on a fixed number of individuals. Often referred to as "rarefaction".
 
 # Parameter Abundance is a vector of abundances.
@@ -194,7 +207,7 @@ SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 ````
 
 ##### multicoreIndividuals( )
-````
+````R
 # A multicore version of subsampleIndividuals( ). Be warned that multicoreIndividuals( ) is not automatically
 # faster than subsampleIndividuals( ), particularly for a low number of trials. Its use is not recommended
 # for small abundance vectors or a small numbers of trials. Requires the doMC package.
@@ -209,7 +222,7 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 ````
 
 ##### resampleIndividuals( )
-````
+````R
 # A specialized variant of subsampleIndividuals( ). If the quota is greater than the number of individuals
 # it will switch to sampling with replacement. This allows for diversity in those samples to be lower
 # than the quota. 
@@ -233,12 +246,12 @@ Other methods of beta calculation come from the equations presented in Tuomisto,
 
 Can be accessed directly in R using:
 
-````
+````R
 source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/partitionDiversity.R")
 ````
 
 ##### taxonAlphaContributions( )
-````
+````R
 # Returns vector of each taxon’s contribution to alpha diversity. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
@@ -247,7 +260,7 @@ TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
 ````
 
 ##### taxonBetaContributions( )
-````
+````R
 # Returns vector of each taxon’s contribution to beta diversity. 
 # Be warned that if you are using a hierarchichal partitioning scheme 
 # that this function *always* calculates between-sample beta,
@@ -261,7 +274,7 @@ TaxonBeta<-taxonBetaContributions(x=PresenceMatrix)
 ````
 
 ##### sampleBetaContributions( )
-````
+````R
 # Returns vector of each sample’s contribution to beta diversity. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
@@ -270,7 +283,7 @@ TaxonBeta<-sampleBetaContributions(x=PresenceMatrix)
 ````
 
 ##### meanAlpha( )
-````
+````R
 # Returns mean alpha diversity (richness) of samples. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
@@ -279,7 +292,7 @@ AlphaDiversity<-meanAlpha(x=PresenceMatrix)
 ````
 
 ##### beta( )
-````
+````R
 # Returns beta diversity (richness) of samples. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
@@ -288,7 +301,7 @@ BetaDiversity<-beta(x=PresenceMatrix)
 ````
 
 ##### gamma( )
-````
+````R
 # Returns gamma (total) diversity (richness) of matrix. Written by S.M. Holland.
 
 # Parameter x is a community matrix of presence-absence data.
@@ -297,7 +310,7 @@ GammaDiversity<-gamma(x=PresenceMatrix)
 ````
 
 ##### traditionalAlpha( )
-````
+````R
 # Calculate alpha diversity in the traditional manner, averaging sample richness.
 # Should always be equal to meanAlpha( ) function.
 
@@ -307,7 +320,7 @@ AlphaDiversity<-traditionalAlpha(x=PresenceMatrix)
 ````
 
 ##### traditionalBeta( )
-````
+````R
 # Calculate beta diversity in the traditional manner ADP manner Beta = Gamma - Alpha
 # Should always be equal to beta( ) function.
 
@@ -317,7 +330,7 @@ BetaDiversity<-traditionalBeta(x=PresenceMatrix)
 ````
 
 ##### multiplicativeBeta( )
-````
+````R
 # Calculate beta diversity in the traditional multiplicative manner. Beta = Gamma/Alpha
 
 # Parameter x is a community matrix of presence-absence data.
@@ -326,7 +339,7 @@ BetaDiversity<-multiplicativeBeta(x=PresenceMatrix)
 ````
 
 ##### completeTurnovers( )
-````
+````R
 # Calculate Whittaker's effective species turnover, the number of complete effective species turnovers among samples in the dataset. 
 # Beta = (Gamma-Alpha)/Alpha
 
@@ -336,7 +349,7 @@ BetaDiversity<-completeTurnovers(x=PresenceMatrix)
 ````
 
 ##### proportionNonendemic( )
-````
+````R
 # Proportional effective species turnover, the proporition of species in the region not limited to a single sample - i.e., the 
 # proportion of "non-endemic" taxa. Beta = (Gamma-Alpha)/Gamma
 
