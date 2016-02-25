@@ -154,7 +154,7 @@ CulledMatrix<-softCull(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
 
 ## subsampleRichness.R
-Functions for standardizing taxonomic richness. The multicore versions use the [doMC](https://cran.r-project.org/web/packages/doMC/vignettes/gettingstartedMC.pdf) package and its dependencies.
+Functions for standardizing taxonomic richness. The multicore versions use the [doMC](https://cran.r-project.org/web/packages/doMC/vignettes/gettingstartedMC.pdf) package and its dependencies. This package is currently not available for windows.
 
 Can be accessed directly in R using:
 
