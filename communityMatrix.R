@@ -3,12 +3,10 @@
 
 ######################################### Load Required Libraries ###########################################
 # Load Required Libraries
-if (require("RCurl")==FALSE) {
+if (require(RCurl)==FALSE) {
 	install.packages("RCurl")
 	library(RCurl)
-	} else {
-		library(RCurl)
-		}
+	}
 
 downloadPBDB<-function(Taxa,StartInterval="Pliocene",StopInterval="Pleistocene") {
 	Taxa<-paste(Taxa,collapse=",")
@@ -51,6 +49,17 @@ constrainAges<-function(DataPBDB,Timescale) {
 		}
 	DataPBDB<-DataPBDB[DataPBDB[,"early_interval"]==DataPBDB[,"late_interval"],] # Remove taxa that range through
 	return(DataPBDB)
+	}
+
+# Find the min and max age range of a taxonomic ranking - e.g., genus.
+ageRanges<-function(IntervalPBDB,Taxonomy="genus") {
+	IntervalPBDB<-subset(IntervalPBDB,is.na(IntervalPBDB[,Taxonomy])!=TRUE) # Remove NA's
+	IntervalPBDB[,Taxonomy]<-factor(IntervalPBDB[,Taxonomy]) # Drop hanging attributes
+	PBDBEarly<-tapply(IntervalPBDB[,"max_ma"],IntervalPBDB[,Taxonomy],max) # Calculate max age
+	PBDBLate<-tapply(IntervalPBDB[,"min_ma"],IntervalPBDB[,Taxonomy],min) # Calculate min age
+	AgesPBDB<-cbind(ceiling(PBDBEarly),floor(PBDBLate)) # Bind and round ages
+	colnames(AgesPBDB)<-c("EarlyAge","LateAge")
+	return(data.matrix(AgesPBDB))
 	}
 
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
