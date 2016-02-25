@@ -77,7 +77,7 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 # Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter Taxonomy is a level of the taxonomic hierarchy - e.g., "genus"
 
-ConstrainedAges<-ageRanges(DataPBDB=DataPBDB,Taxonomy="genus")
+AgeRanges<-ageRanges(DataPBDB=DataPBDB,Taxonomy="genus")
 ````
 
 ##### cleanGenus( )
