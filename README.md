@@ -17,7 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
-+ v.0.032 - Added [ageRanges( )](#ageranges-) function, which finds the age range of each taxon.
++ v.0.032 - Added [ageRanges( )](#ageranges-) function, which finds the age range of each taxon. Chnaged [abundanceMatrix( )](#abundancematrix-) and [presenceMatrix( )](#presencematrix-) to accept taxon ranks other than genus.
 + v.0.031 - Fixed a bug with the error messages for [resampleIndividuals( )](#resampleindividuals-) and [subsampleIndividuals( )](#subsampleindividuals-)
 + v.0.030 - Added [partitionDiversity.R](#partitiondiversityr) module.
 + v.0.025 - Upgraded [downloadPBDB( )](#downloadpbdb-) to use https instead of http.
@@ -102,7 +102,7 @@ CleanedPBDB<-cleanGenus(DataPBDB)
 # Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter SampleDefinition is the column name defining samples
 
-CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate")
+CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus")
 ````
 
 ##### abundanceMatrix( )
@@ -116,7 +116,7 @@ CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate")
 # Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Parameter SampleDefinition is the column name defining samples
 
-CommunityMatrix<-abundanceMatrix(DataPBDB,SampleDefinition="geoplate")
+CommunityMatrix<-abundanceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus")
 ````
 
 ## cullMatrix.R
