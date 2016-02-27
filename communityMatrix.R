@@ -92,3 +92,19 @@ abundanceMatrix<-function(DataPBDB,SampleDefinition="geoplate") {
 		}
 	return(FinalMatrix)
 	}
+
+# Match PBDB collections to a Macrostrat Unit
+# This will function will ideally be re-optimized when v3 of macrostrat goes live, there it is not yet
+# suppoted as part of this package.
+macrostratMatch<-function(DataPBDB) {
+	URL<-paste("https://macrostrat.org/api/fossils?format=csv&age_top=",min(DataPBDB[,"min_ma"]),"&age_bottom=",max(DataPBDB[,"max_ma"]),sep="")
+	FossilURL<-getURL(URL)
+	CollectionMatches<-read.csv(text=FossilURL,header=T)[,c("unit_id","cltn_id")]
+	URL<-paste("https://macrostrat.org/api/units?format=csv&age_top=",min(DataPBDB[,"min_ma"]),"&age_bottom=",max(DataPBDB[,"max_ma"]),sep="")
+	UnitURL<-getURL(URL)
+	UnitMatches<-read.csv(text=UnitURL,header=T)[,c("unit_id","unit_name")]
+	MacrostratData<-merge(CollectionMatches,UnitMatches,by="unit_id")
+	MacrostratMatch<-merge(MacrostratData,DataPBDB,by.x="cltn_id",by.y="collection_no")
+	return(MacrostratMatch[,c("cltn_id","unit_id","unit_name","occurrence_no","paleolat","paleolng","early_interval","late_interval","phylum","class","order","family","genus")])
+	}
+	
