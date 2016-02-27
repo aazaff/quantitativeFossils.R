@@ -64,7 +64,7 @@ ageRanges<-function(IntervalPBDB,Taxonomy="genus") {
 
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample. This is a presence-absence matrix.
-presenceMatrix<-function(DataPBDB,SampleDefinition="geoplate"TaxonRank="genus") {
+presenceMatrix<-function(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus") {
 	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDefinition])),ncol=length(unique(DataPBDB[,TaxonRank])))
 	rownames(FinalMatrix)<-unique(DataPBDB[,SampleDefinition])
 	colnames(FinalMatrix)<-unique(DataPBDB[,TaxonRank])
