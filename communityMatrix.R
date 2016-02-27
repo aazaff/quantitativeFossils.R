@@ -64,13 +64,13 @@ ageRanges<-function(IntervalPBDB,Taxonomy="genus") {
 
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample. This is a presence-absence matrix.
-presenceMatrix<-function(DataPBDB,SampleDefinition="geoplate") {
-	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDefinition])),ncol=length(unique(DataPBDB[,"genus"])))
+presenceMatrix<-function(DataPBDB,SampleDefinition="geoplate"TaxonRank="genus") {
+	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDefinition])),ncol=length(unique(DataPBDB[,TaxonRank])))
 	rownames(FinalMatrix)<-unique(DataPBDB[,SampleDefinition])
-	colnames(FinalMatrix)<-unique(DataPBDB[,"genus"])
+	colnames(FinalMatrix)<-unique(DataPBDB[,TaxonRank])
 	for (i in 1:nrow(FinalMatrix)) {
 		SampleSubset<-subset(DataPBDB,DataPBDB[,SampleDefinition]==rownames(FinalMatrix)[i])
-		ColumnPosition<-match(SampleSubset[,"genus"],colnames(FinalMatrix))
+		ColumnPosition<-match(SampleSubset[,TaxonRank],colnames(FinalMatrix))
 		FinalMatrix[i,ColumnPosition]<-1
 		}
 	return(FinalMatrix)
@@ -79,13 +79,13 @@ presenceMatrix<-function(DataPBDB,SampleDefinition="geoplate") {
 # Create a community matrix of samples v. species, using elements within one of the PBDB columns
 # (e.g., geoplate, early_interval) as the definition of a sample. This is an "abundance" matrix which uses
 # the number of occurrences.
-abundanceMatrix<-function(DataPBDB,SampleDefinition="geoplate") {
-	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDefinition])),ncol=length(unique(DataPBDB[,"genus"])))
+abundanceMatrix<-function(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus") {
+	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,SampleDefinition])),ncol=length(unique(DataPBDB[,TaxonRank])))
 	rownames(FinalMatrix)<-unique(DataPBDB[,SampleDefinition])
-	colnames(FinalMatrix)<-unique(DataPBDB[,"genus"])
+	colnames(FinalMatrix)<-unique(DataPBDB[,TaxonRank])
 	for (i in 1:nrow(FinalMatrix)) {
 		SampleSubset<-subset(DataPBDB,DataPBDB[,SampleDefinition]==rownames(FinalMatrix)[i])
-		Abundances<-table(SampleSubset[,"genus"])
+		Abundances<-table(SampleSubset[,TaxonRank])
 		Abundances<-Abundances[Abundances>0]
 		ColumnPosition<-match(names(Abundances),colnames(FinalMatrix))
 		FinalMatrix[i,ColumnPosition]<-Abundances
