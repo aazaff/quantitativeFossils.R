@@ -7,7 +7,12 @@ if (require(RCurl)==FALSE) {
 	install.packages("RCurl")
 	library(RCurl)
 	}
+if (require(rgdal)==FALSE) {
+	install.packages("rgdal")
+	library(rgdal)
+	}
 
+# A function for downloading data from the Paleobiology database
 downloadPBDB<-function(Taxa,StartInterval="Pliocene",StopInterval="Pleistocene") {
 	Taxa<-paste(Taxa,collapse=",")
 	URL<-paste("https://paleobiodb.org/data1.2/occs/list.csv?base_name=",Taxa,"&interval=",StartInterval,",",StopInterval,"&show=paleoloc,phylo&limit=all",sep="")
@@ -51,6 +56,14 @@ constrainAges<-function(DataPBDB,Timescale) {
 	return(DataPBDB)
 	}
 
+# download maps of paleocontinents from Macrostrat
+downloadPaleogeography<-function(Age=0) {
+	URL<-paste("https://macrostrat.org/api/paleogeography?format=geojson_bare&age=",Age,sep="")
+	GotURL<-getURL(URL)
+	Map<-readOGR(GotURL,"OGRGeoJSON",verbose=FALSE)
+	return(Map)
+	}
+	
 # Find the min and max age range of a taxonomic ranking - e.g., genus.
 ageRanges<-function(IntervalPBDB,Taxonomy="genus") {
 	IntervalPBDB<-subset(IntervalPBDB,is.na(IntervalPBDB[,Taxonomy])!=TRUE) # Remove NA's
