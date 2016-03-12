@@ -17,6 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
++ v.0.033 - Added [downloadPaleogeography( )](#downloadpaleogeography-) function. Downloads a map of paleocontinent orientation as a shapefile. Accepts an age between 541 and 0 mys.
 + v.0.032 - Added [ageRanges( )](#ageranges-) function, which finds the age range of each taxon. Changed [abundanceMatrix( )](#abundancematrix-) and [presenceMatrix( )](#presencematrix-) to accept taxon ranks other than genus.
 + v.0.031 - Fixed a bug with the error messages for [resampleIndividuals( )](#resampleindividuals-) and [subsampleIndividuals( )](#subsampleindividuals-)
 + v.0.030 - Added [partitionDiversity.R](#partitiondiversityr) module.
@@ -56,6 +57,16 @@ DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",
 # A list of Timescale defs can be seen here https://macrostrat.org/api/defs/timescales?all
 
 Epochs<-downloadTime(Timescale="international epochs")
+````
+
+##### downloadPaleogeography( )
+````R
+# Download a map of paleocontinents for a specific age from Macrostrat as a shapefile.
+# Note that this makes use of the rgdal package and its dependencies.
+
+# Parameter Age is a numerical value ranging from 541 to 0 mys ago.
+
+PaleoMap<-downloadPaleogeography(Age=0)
 ````
 
 ##### constrainAges( )
