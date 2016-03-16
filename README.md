@@ -17,6 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
++ v0.034 - Upgraded the ````cleanGenus( )```` function to [cleanRank( )](#cleanrank-), so that it will clean any taxonomic field - e.g., family, order - in addition to genus.
 + v.0.033 - Added [downloadPaleogeography( )](#downloadpaleogeography-) function. Downloads a map of paleocontinent orientation as a shapefile. Accepts an age between 541 and 0 mys.
 + v.0.032 - Added [ageRanges( )](#ageranges-) function, which finds the age range of each taxon. Changed [abundanceMatrix( )](#abundancematrix-) and [presenceMatrix( )](#presencematrix-) to accept taxon ranks other than genus.
 + v.0.031 - Fixed a bug with the error messages for [resampleIndividuals( )](#resampleindividuals-) and [subsampleIndividuals( )](#subsampleindividuals-)
@@ -42,9 +43,9 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/c
 ````R
 # Download data from PBDB by taxonomic group and geologic interval.
 
-# Parameter Taxa must be a vector of one or more taxon names (as a character string), no default.
-# Parameter StartInterval must be a single interval name accepted by the PBDB, default is "Pliocene"
-# Parameter StopInterval must be a single interval name accepted by the PBDB, default is "Pleistocene" 
+# Argument Taxa must be a vector of one or more taxon names (as a character string), no default.
+# Argument StartInterval must be a single interval name accepted by the PBDB, default is "Pliocene"
+# Argument StopInterval must be a single interval name accepted by the PBDB, default is "Pleistocene" 
 
 DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",StopInterval="Pleistocene")
 ````
@@ -53,7 +54,7 @@ DataPBDB<-downloadPBDB(Taxa=c("Bivalvia","Gastropoda"),StartInterval="Cambrian",
 ````R
 # Download Timescale definitions from Macrostrat.
 
-# Parameter Timescale must be a timescale recognized by the macrostrat API, no default
+# Argument Timescale must be a timescale recognized by the macrostrat API, no default
 # A list of Timescale defs can be seen here https://macrostrat.org/api/defs/timescales?all
 
 Epochs<-downloadTime(Timescale="international epochs")
@@ -64,7 +65,7 @@ Epochs<-downloadTime(Timescale="international epochs")
 # Download a map of paleocontinents for a specific age from Macrostrat as a shapefile.
 # Note that this makes use of the rgdal package and its dependencies.
 
-# Parameter Age is a numerical value ranging from 541 to 0 mys ago.
+# Argument Age is a numerical value ranging from 541 to 0 mys ago.
 
 PaleoMap<-downloadPaleogeography(Age=0)
 ````
@@ -74,8 +75,8 @@ PaleoMap<-downloadPaleogeography(Age=0)
 # Assign fossil occurrences to different ages, then remove occurrences that are not temporally 
 # constrained to a single interval.
 
-# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
-# Parameter Timescale is a dataset downloaded from Macrostrat - i.e., using downloadTime( )
+# Argument DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Argument Timescale is a dataset downloaded from Macrostrat - i.e., using downloadTime( )
 
 ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 ````
@@ -85,21 +86,20 @@ ConstrainedAges<-constrainAges(DataPBDB=DataPBDB,Timescale=Epochs)
 # Find the age range (min and max age) based on occurrence data in the PBDB for
 # A particular level of the taxonomic hierarchy (e.g., genus, family, order)
 
-# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
-# Parameter Taxonomy is a level of the taxonomic hierarchy - e.g., "genus"
+# Argument DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Argument Taxonomy is a level of the taxonomic hierarchy - e.g., "genus"
 
 AgeRanges<-ageRanges(DataPBDB=DataPBDB,Taxonomy="genus")
 ````
 
-##### cleanGenus( )
+##### cleanRank( )
 ````R
-# Cleans the genus field of the PBDB data by removing subgenera and NA's. This is an important step when
-# working with genus level data in the PBDB, as the "genus" column often erroneously includes
-# subgenus information.
+# Cleans the a taxonomic rank field of the PBDB data by removing NA's. It also removes subgenera from the genus rank. 
 
-# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Argument DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Argument Rank is a taxonomic rank - i.e., "genus".
 
-CleanedPBDB<-cleanGenus(DataPBDB)
+CleanedPBDB<-cleanRank(DataPBDB,Rank="genus")
 ````
 
 ##### presenceMatrix( )
@@ -110,8 +110,8 @@ CleanedPBDB<-cleanGenus(DataPBDB)
 
 # This is just a renamed version of the now deprecated function communityMatrix( ).
 
-# Parameter DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
-# Parameter SampleDefinition is the column name defining samples
+# Argument DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Argument SampleDefinition is the column name defining samples
 
 CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus")
 ````
@@ -124,8 +124,8 @@ CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="
 # Because the theoretical and operational meaning of occurrences in the Paleobiology Database is ill-defined
 # I recommend using presenceMatrix( ) instead if possible.
 
-# Parameter DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
-# Parameter SampleDefinition is the column name defining samples
+# Argument DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
+# Argument SampleDefinition is the column name defining samples
 
 CommunityMatrix<-abundanceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus")
 ````
@@ -143,9 +143,9 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/c
 ````R
 # Cull a community matrix of depauperate samples and rare taxa. Written by S.M. Holland.
 
-# Parameter x is a community matrix, no default.
-# Parameter minOccurrences is the minimum number of occurrences for each taxon, default = 2
-# Parameter minDiversity is the minimum number of taxa within each sample, default=2
+# Argument x is a community matrix, no default.
+# Argument minOccurrences is the minimum number of occurrences for each taxon, default = 2
+# Argument minDiversity is the minimum number of taxa within each sample, default=2
 
 CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
@@ -157,9 +157,9 @@ CulledMatrix<-cullMatrix(CommunityMatrix,minOccurrences=5,minDiversity=5)
 # and you would rather skip depauperate matrices than break the loop. 
 # Not recommended otherwise.
 
-# Parameter x is a community matrix, no default.
-# Parameter minOccurrences is the minimum number of occurrences for each taxon, default = 2
-# Parameter minDiversity is the minimum number of taxa within each sample, default=2
+# Argument x is a community matrix, no default.
+# Argument minOccurrences is the minimum number of occurrences for each taxon, default = 2
+# Argument minDiversity is the minimum number of taxa within each sample, default=2
 
 CulledMatrix<-softCull(CommunityMatrix,minOccurrences=5,minDiversity=5)
 ````
@@ -178,11 +178,11 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/s
 # A function that subsamples richness based on evenness. Often referred to as "Shareholder Quorum Subsampling".
 # An optimized version of John Alroy's original function by Steven M. Holland.
 
-# Parameter Abundance is a vector of abundances.
-# Parameter Quota is a value between 0 and 1, the default is set to 0.9.
-# Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
-# Parameter IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
-# Parameter ExcludeDominant determines whether or not to ignore the most dominant taxon
+# Argument Abundance is a vector of abundances.
+# Argument Quota is a value between 0 and 1, the default is set to 0.9.
+# Argument Trials determines how many iterations of the bootstrap are performed, default = 100
+# Argument IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
+# Argument ExcludeDominant determines whether or not to ignore the most dominant taxon
 # Excluding the abundant taxon is recommended by Alroy, but the default is set to FALSE.
 
 SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE)
@@ -194,13 +194,13 @@ SubsampledRichness<-subsampleEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 # faster than subsampleEvenness( ), particularly for a low number of trials. Its use is not recommended
 # for small abundance vectors or a small numbers of trials. Requires the doMC package.
 
-# Parameter Abundance is a vector of abundances.
-# Parameter Quota is a value between 0 and 1, the default is set to 0.9.
-# Parameter Trials determines how many iterations of the bootstrap are performed, default = 1000
-# Parameter IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
-# Parameter ExcludeDominant determines whether or not to ignore the most dominant taxon
+# Argument Abundance is a vector of abundances.
+# Argument Quota is a value between 0 and 1, the default is set to 0.9.
+# Argument Trials determines how many iterations of the bootstrap are performed, default = 1000
+# Argument IgnoreSingletons determines whether or not to ignore singletons, default is FALSE.
+# Argument ExcludeDominant determines whether or not to ignore the most dominant taxon
 # Excluding the dominant taxon is recommended by Alroy, but the default is set to FALSE.
-# Parameter Cores sets the number of processor cores, default = 4.
+# Argument Cores sets the number of processor cores, default = 4.
 
 SubsampledRichness<-multicoreEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingletons=FALSE,ExcludeDominant=FALSE,Cores=4)
 ````
@@ -209,10 +209,10 @@ SubsampledRichness<-multicoreEvenness(Abundance,Quota=0.5,Trials=100,IgnoreSingl
 ````R
 # A function that subsamples richness based on a fixed number of individuals. Often referred to as "rarefaction".
 
-# Parameter Abundance is a vector of abundances.
-# Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
+# Argument Abundance is a vector of abundances.
+# Argument Quota is the number of individuals to be subsampled. If the Quota is greater than
 # the number of individuals, the function will print a warning and return the unstandardized richness.
-# Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
+# Argument Trials determines how many iterations of the bootstrap are performed, default = 100
 
 SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 ````
@@ -223,11 +223,11 @@ SubsampledRichness<-subsampleIndividuals(Abundance,Quota,Trials=100)
 # faster than subsampleIndividuals( ), particularly for a low number of trials. Its use is not recommended
 # for small abundance vectors or a small numbers of trials. Requires the doMC package.
 
-# Parameter Abundance is a vector of abundances.
-# Parameter Quota is the number of individuals to be subsampled. If the Quota is greater than
+# Argument Abundance is a vector of abundances.
+# Argument Quota is the number of individuals to be subsampled. If the Quota is greater than
 # the number of individuals, the function will print a warning and return the unstandardized richness.
-# Parameter Trials determines how many iterations of the bootstrap are performed, default = 1000
-# Parameter Cores sets the number of processor cores, default = 4.
+# Argument Trials determines how many iterations of the bootstrap are performed, default = 1000
+# Argument Cores sets the number of processor cores, default = 4.
 
 SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 ````
@@ -240,9 +240,9 @@ SubsampledRichness<-multicoreIndividuals(Abundance,Quota,Trials=1000,Cores=4)
 
 # Caution: This is a non-standard approach.
 
-# Parameter Abundance is a vector of abundances.
-# Parameter Quota is the number of individuals to be subsampled. 
-# Parameter Trials determines how many iterations of the bootstrap are performed, default = 100
+# Argument Abundance is a vector of abundances.
+# Argument Quota is the number of individuals to be subsampled. 
+# Argument Trials determines how many iterations of the bootstrap are performed, default = 100
 
 ResampledIndividuals<-resampleIndividuals(Abundance,Quota,Trials=100)
 ````
@@ -265,7 +265,7 @@ source("https://raw.githubusercontent.com/aazaff/paleobiologyDatabase.R/master/p
 ````R
 # Returns vector of each taxon’s contribution to alpha diversity. Written by S.M. Holland.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
 ````
@@ -279,7 +279,7 @@ TaxonAlpha<-taxonAlphaContributions(x=PresenceMatrix)
 # in the community matrix before you can calculate the beta 
 # diversity of a higher level in the hierarchy. Written by S.M. Holland.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 TaxonBeta<-taxonBetaContributions(x=PresenceMatrix)
 ````
@@ -288,7 +288,7 @@ TaxonBeta<-taxonBetaContributions(x=PresenceMatrix)
 ````R
 # Returns vector of each sample’s contribution to beta diversity. Written by S.M. Holland.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 TaxonBeta<-sampleBetaContributions(x=PresenceMatrix)
 ````
@@ -297,7 +297,7 @@ TaxonBeta<-sampleBetaContributions(x=PresenceMatrix)
 ````R
 # Returns mean alpha diversity (richness) of samples. Written by S.M. Holland.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 AlphaDiversity<-meanAlpha(x=PresenceMatrix)
 ````
@@ -306,7 +306,7 @@ AlphaDiversity<-meanAlpha(x=PresenceMatrix)
 ````R
 # Returns beta diversity (richness) of samples. Written by S.M. Holland.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 BetaDiversity<-beta(x=PresenceMatrix)
 ````
@@ -315,7 +315,7 @@ BetaDiversity<-beta(x=PresenceMatrix)
 ````R
 # Returns gamma (total) diversity (richness) of matrix. Written by S.M. Holland.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 GammaDiversity<-gamma(x=PresenceMatrix)
 ````
@@ -325,7 +325,7 @@ GammaDiversity<-gamma(x=PresenceMatrix)
 # Calculate alpha diversity in the traditional manner, averaging sample richness.
 # Should always be equal to meanAlpha( ) function.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 AlphaDiversity<-traditionalAlpha(x=PresenceMatrix)
 ````
@@ -335,7 +335,7 @@ AlphaDiversity<-traditionalAlpha(x=PresenceMatrix)
 # Calculate beta diversity in the traditional manner ADP manner Beta = Gamma - Alpha
 # Should always be equal to beta( ) function.
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 BetaDiversity<-traditionalBeta(x=PresenceMatrix)
 ````
@@ -344,7 +344,7 @@ BetaDiversity<-traditionalBeta(x=PresenceMatrix)
 ````R
 # Calculate beta diversity in the traditional multiplicative manner. Beta = Gamma/Alpha
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 BetaDiversity<-multiplicativeBeta(x=PresenceMatrix)
 ````
@@ -355,7 +355,7 @@ BetaDiversity<-multiplicativeBeta(x=PresenceMatrix)
 # turnovers among samples in the dataset. 
 # Beta = (Gamma-Alpha)/Alpha
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 BetaDiversity<-completeTurnovers(x=PresenceMatrix)
 ````
@@ -366,7 +366,7 @@ BetaDiversity<-completeTurnovers(x=PresenceMatrix)
 # not limited to a single sample - i.e., the 
 # proportion of "non-endemic" taxa. Beta = (Gamma-Alpha)/Gamma
 
-# Parameter x is a community matrix of presence-absence data.
+# Argument x is a community matrix of presence-absence data.
 
 BetaDiversity<-proportionNonendemic(x=PresenceMatrix)
 ````
