@@ -95,6 +95,7 @@ AgeRanges<-ageRanges(DataPBDB=DataPBDB,Taxonomy="genus")
 ##### cleanRank( )
 ````R
 # Cleans the a taxonomic rank field of the PBDB data by removing NA's. It also removes subgenera from the genus rank. 
+# This is an upgraded version of the now deprecated cleanGenus( ) function.
 
 # Argument DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
 # Argument Rank is a taxonomic rank - i.e., "genus".
