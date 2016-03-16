@@ -33,9 +33,9 @@ downloadTime<-function(Timescale) {
 	}
 
 # Remove subgenera and NAs
-cleanTaxa<-function(DataPBDB,Rank="genus") {
-	DataPBDB<-subset(DataPBDB,DataPBDB[,Rank]!="") # Remove NA Genera
-	DataPBDB<-subset(DataPBDB,is.na(DataPBDB[,Rank])!=TRUE) # Remove NA Genera
+cleanRank<-function(DataPBDB,Rank="genus") {
+	DataPBDB<-subset(DataPBDB,DataPBDB[,Rank]!="") # Remove NAs
+	DataPBDB<-subset(DataPBDB,is.na(DataPBDB[,Rank])!=TRUE) # Remove NAs
 	SpaceSeparated<-sapply(as.character(DataPBDB[,Rank]),strsplit," ")
 	DataPBDB[,Rank]<-sapply(SpaceSeparated,function(S) S[1])
 	return(DataPBDB)
