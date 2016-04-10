@@ -64,14 +64,6 @@ downloadPaleogeography<-function(Age=0) {
 	return(Map)
 	}
 	
-# download maps of Macrostrat columns
-downloadMacrostrat<-function(BottomAge=541,TopAge=0) {
-	URL<-paste("https://macrostrat.org/api/columns?format=geojson_bare&age_bottom=",BottomAge,"&age_top=",TopAge,sep="")
-	GotURL<-getURL(URL)
-	Map<-readOGR(GotURL,"OGRGeoJSON",verbose=FALSE)
-	return(Map)
-	}
-	
 # Find the min and max age range of a taxonomic ranking - e.g., genus.
 ageRanges<-function(IntervalPBDB,Taxonomy="genus") {
 	IntervalPBDB<-subset(IntervalPBDB,is.na(IntervalPBDB[,Taxonomy])!=TRUE) # Remove NA's
