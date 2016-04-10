@@ -15,7 +15,7 @@ if (require(rgdal)==FALSE) {
 # A function for downloading data from the Paleobiology database
 downloadPBDB<-function(Taxa,StartInterval="Pliocene",StopInterval="Pleistocene") {
 	Taxa<-paste(Taxa,collapse=",")
-	URL<-paste("https://paleobiodb.org/data1.2/occs/list.csv?base_name=",Taxa,"&interval=",StartInterval,",",StopInterval,"&show=paleoloc,phylo&limit=all",sep="")
+	URL<-paste("https://paleobiodb.org/data1.2/occs/list.csv?base_name=",Taxa,"&interval=",StartInterval,",",StopInterval,"&show=coords,paleoloc,phylo&limit=all",sep="")
 	GotURL<-getURL(URL)
 	File<-read.csv(text=GotURL,header=T)
 	return(File)
