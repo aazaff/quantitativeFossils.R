@@ -3,13 +3,13 @@
 
 ######################################### Load Required Libraries ###########################################
 # Load Required Libraries
-if (require(RCurl)==FALSE) {
+if (require(RCurl,quietly=TRUE)==FALSE) {
 	install.packages("RCurl")
-	library(RCurl)
+	library(RCurl,quietly=TRUE)
 	}
-if (require(rgdal)==FALSE) {
+if (require(rgdal,quietly=TRUE)==FALSE) {
 	install.packages("rgdal")
-	library(rgdal)
+	library(rgdal,quietly=TRUE)
 	}
 
 # A function for downloading data from the Paleobiology database
