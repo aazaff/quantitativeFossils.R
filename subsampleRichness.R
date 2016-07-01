@@ -4,9 +4,9 @@
 ########################################## Function for Calculating SQS #####################################
 #############################################################################################################
 # Load Required Libraries
-if (require(doMC,quietly=TRUE)==FALSE) {
+if (require("doMC")==FALSE) {
 	install.packages("doMC")
-	library(doMC,quietly=TRUE)
+	library("doMC")
 	}
 
 # Steve Holland's optimized SQS function
