@@ -29,6 +29,7 @@ downloadTime<-function(Timescale) {
 	Intervals<-read.csv(text=GotURL,header=T)
 	Midpoint<-apply(Intervals[,c("t_age","b_age")],1,median)
 	Intervals<-cbind(Intervals,Midpoint)
+	rownames(Intervals)<-Intervals[,"name"]
 	return(Intervals)
 	}
 
