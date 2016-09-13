@@ -17,7 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
-+ v0.035 - Optimized the ````presenceMatrix( )```` function. It now produces an identical output at 100x the speed. The arguments have been changed to make it clearer what makes up the rows and columns of the matrix.
++ v0.035 - Optimized the ````presenceMatrix( )```` function. It now produces an identical output at 100x the speed. The arguments have been changed to make it clearer what makes up the rows and columns of the matrix. The arguments for ````abundanceMatrix( )```` have also been updated, but it has not been optimized.
 + v0.034 - Upgraded the ````cleanGenus( )```` function to [cleanRank( )](#cleanrank-), so that it will clean any taxonomic field - e.g., family, order - in addition to genus.
 + v.0.033 - Added [downloadPaleogeography( )](#downloadpaleogeography-) function. Downloads a map of paleocontinent orientation as a shapefile. Accepts an age between 541 and 0 mys.
 + v.0.032 - Added [ageRanges( )](#ageranges-) function, which finds the age range of each taxon. Changed [abundanceMatrix( )](#abundancematrix-) and [presenceMatrix( )](#presencematrix-) to accept taxon ranks other than genus.
@@ -113,9 +113,10 @@ CleanedPBDB<-cleanRank(DataPBDB,Rank="genus")
 # This is just a renamed version of the now deprecated function communityMatrix( ).
 
 # Argument DataPBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
-# Argument SampleDefinition is the column name defining samples
+# Argument Rows is the column name defining samples
+# Argument Columns is the column name defining taxa
 
-CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus")
+CommunityMatrix<-presenceMatrix(DataPBDB,Rows="geoplate",Columns="genus")
 ````
 
 ##### abundanceMatrix( )
@@ -127,9 +128,10 @@ CommunityMatrix<-presenceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="
 # I recommend using presenceMatrix( ) instead if possible.
 
 # Argument DataPBBDB is a dataset downloaded from the PBDB - i.e., using downloadPBDB( )
-# Argument SampleDefinition is the column name defining samples
+# Argument Rows is the column name defining samples
+# Argument Columns is the column name defining taxa
 
-CommunityMatrix<-abundanceMatrix(DataPBDB,SampleDefinition="geoplate",TaxonRank="genus")
+CommunityMatrix<-abundanceMatrix(DataPBDB,Rows="geoplate",Columns="genus")
 ````
 
 ## cullMatrix.R
