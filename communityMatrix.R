@@ -94,17 +94,11 @@ presenceMatrix<-function(DataPBDB,Rows="geoplate",Columns="genus") {
 # (e.g., geoplate, early_interval) as the definition of a sample. This is an "abundance" matrix which uses
 # the number of occurrences.
 abundanceMatrix<-function(DataPBDB,Rows="geoplate",Columns="genus") {
-	FinalMatrix<-matrix(0,nrow=length(unique(DataPBDB[,Rows])),ncol=length(unique(DataPBDB[,Columns])))
-	rownames(FinalMatrix)<-unique(DataPBDB[,Rows])
-	colnames(FinalMatrix)<-unique(DataPBDB[,Columns])
-	for (i in 1:nrow(FinalMatrix)) {
-		SampleSubset<-subset(DataPBDB,DataPBDB[,Rows]==rownames(FinalMatrix)[i])
-		Abundances<-table(SampleSubset[,Columns])
-		Abundances<-Abundances[Abundances>0]
-		ColumnPosition<-match(names(Abundances),colnames(FinalMatrix))
-		FinalMatrix[i,ColumnPosition]<-Abundances
-		}
-	return(FinalMatrix)
+	DataPBDB[,Columns]<-as.factor(DataPBDB[,Columns])
+	SamplesAbundances<-by(DataPBDB,DataPBDB[,Rows],function(x) table(x[,Columns]))
+	FinalMatrix<-sapply(SamplesAbundances,data.matrix)
+	rownames(FinalMatrix)<-sort(unique((DataPBDB[,Columns])))
+	return(t(FinalMatrix))
 	}
 
 # Match PBDB collections to a Macrostrat Unit
