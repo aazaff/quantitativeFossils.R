@@ -17,6 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
++ v0.036 - Changed the ````ageRanges( )```` function so that it no longe rounds ages to the nearest million years.
 + v0.035 - Optimized the ````presenceMatrix( )```` and ````abundanceMatrix( )```` functions. It now produces an identical output at 30x faster. The arguments have been changed to make it clearer what makes up the rows and columns of the matrix.
 + v0.034 - Upgraded the ````cleanGenus( )```` function to [cleanRank( )](#cleanrank-), so that it will clean any taxonomic field - e.g., family, order - in addition to genus.
 + v.0.033 - Added [downloadPaleogeography( )](#downloadpaleogeography-) function. Downloads a map of paleocontinent orientation as a shapefile. Accepts an age between 541 and 0 mys.
