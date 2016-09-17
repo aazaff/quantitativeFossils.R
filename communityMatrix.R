@@ -71,7 +71,7 @@ ageRanges<-function(IntervalPBDB,Taxonomy="genus") {
 	IntervalPBDB[,Taxonomy]<-factor(IntervalPBDB[,Taxonomy]) # Drop hanging attributes
 	PBDBEarly<-tapply(IntervalPBDB[,"max_ma"],IntervalPBDB[,Taxonomy],max) # Calculate max age
 	PBDBLate<-tapply(IntervalPBDB[,"min_ma"],IntervalPBDB[,Taxonomy],min) # Calculate min age
-	AgesPBDB<-cbind(ceiling(PBDBEarly),floor(PBDBLate)) # Bind and round ages
+	AgesPBDB<-cbind(PBDBEarly,PBDBLate) # Bind ages
 	colnames(AgesPBDB)<-c("EarlyAge","LateAge")
 	return(data.matrix(AgesPBDB))
 	}
