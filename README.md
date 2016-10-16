@@ -1,4 +1,4 @@
-# paleobiologyDatabase.R
+# quantitativeFossils.R
 R Functions for downloading, cleaning, culling, or analyzing fossil data from the Paleobiology Database. Developed and maintained by [Andrew Zaffos](https://macrostrat.org) as part of the [Paleobiology Database](https://paleobiodb.org) and [Macrostrat Database](https://macrostrat.org) tech development initiatives at the University of Wisconsin - Madison.
 
 ## Contents
@@ -17,6 +17,7 @@ This is v0.03 of the paleobiologyDatabase.R repository. The repository has four 
 
 The next module will add support for several dual-concept diversity indices (e.g., True Shannon's Entropy) to some of these modules.
 
++ v0.037 - Changed the package names to quantitativeFossils
 + v0.036 - Changed the ````ageRanges( )```` function so that it no longe rounds ages to the nearest million years.
 + v0.035 - Optimized the ````presenceMatrix( )```` and ````abundanceMatrix( )```` functions. It now produces an identical output at 30x faster. The arguments have been changed to make it clearer what makes up the rows and columns of the matrix.
 + v0.034 - Upgraded the ````cleanGenus( )```` function to [cleanRank( )](#cleanrank-), so that it will clean any taxonomic field - e.g., family, order - in addition to genus.
