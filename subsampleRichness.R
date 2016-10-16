@@ -46,7 +46,7 @@ subsampleEvenness<-function(Abundance,Quota=0.9,Trials=100,IgnoreSingletons=FALS
 		}
  	# create a vector, length equal to total number of specimens,
 	# each value is the index of that species in the Abundance array
-	IDS<-unlist(mapply(rep,1:NumTaxa,Abundance))
+	IDS<-rep(1:NumTaxa,times=Abundance)
  	# subsampling trial loop
 	Richness<-rep(0,Trials) # subsampled taxon richness
 	for (Trial in 1:Trials) {
