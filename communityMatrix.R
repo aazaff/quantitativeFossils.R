@@ -26,7 +26,7 @@ downloadTime<-function(Timescale) {
 	Timescale<-gsub(" ","%20",Timescale)
 	URL<-paste("https://dev.macrostrat.org/api/defs/intervals?format=csv&timescale=",Timescale,sep="")
 	GotURL<-getURL(URL)
-	Intervals<-read.csv(text=GotURL,header=T)
+	Intervals<-read.csv(text=GotURL,header=TRUE)
 	Midpoint<-apply(Intervals[,c("t_age","b_age")],1,median)
 	Intervals<-cbind(Intervals,Midpoint)
 	rownames(Intervals)<-Intervals[,"name"]
