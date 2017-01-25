@@ -1,4 +1,4 @@
-**Notice This Repository is Now Deprecated**
+**This Repository is Now Deprecated**
 These functions are now part of the [velociraptr](https://github.com/paleobiodb/paleobiodb_utilities/tree/master/velociraptr) package.
 
 # quantitativeFossils.R
